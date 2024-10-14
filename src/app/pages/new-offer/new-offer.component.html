@@ -30,19 +30,7 @@
         ></textarea>
       </div>
 
-      <div class="form-group">
-        <label for="category">Catégorie</label>
-        <select
-          class="form-control"
-          id="category"
-          name="category"
-          [(ngModel)]="offer.category"
-          required
-        >
-          <option value="" disabled selected>Choisissez une catégorie</option>
-          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-        </select>
-      </div>
+      
 
       <div class="form-group">
         <label for="budget">Budget (en EUR)</label>
@@ -69,17 +57,31 @@
         />
       </div>
 
-      <div class="form-group">
-        <label for="skills">Compétences Requises</label>
+      <h5>Compétences Requises</h5>
+      <div *ngFor="let skill of offer.required_skills; let i = index" class="form-group">
+        <label for="skill{{i}}">Compétence {{i + 1}}</label>
         <input
           type="text"
           class="form-control"
-          id="skills"
-          name="skills"
-          [(ngModel)]="offer.skills"
-          placeholder="Séparez les compétences par des virgules"
+          id="skill{{i}}"
+          [(ngModel)]="skill.skill"
+          name="skill{{i}}"
+          placeholder="Nom de la compétence"
+          required
         />
+        <label for="levelRequired{{i}}">Niveau Requis</label>
+        <input
+          type="number"
+          class="form-control"
+          id="levelRequired{{i}}"
+          [(ngModel)]="skill.level_required"
+          name="levelRequired{{i}}"
+          placeholder="Niveau requis (ex: 1-débutant, 2-intermédiaire, 3-expert)"
+          required
+        />
+        <button type="button" class="btn btn-danger" (click)="removeSkill(i)">Supprimer cette compétence</button>
       </div>
+      <button type="button" class="btn btn-secondary" (click)="addSkill()">Ajouter une compétence</button>
 
       <button type="submit" class="btn btn-primary" [disabled]="!offerForm.form.valid">
         Publier l'Offre

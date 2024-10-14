@@ -30,6 +30,7 @@ export class NavRightComponent implements OnInit{
   userDetails!: {
     first_name: string;
     last_name: string;
+    photo: string;
   };
 
   // constructor

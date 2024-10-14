@@ -7,7 +7,7 @@ export interface User {
     password?: string;
     confirm_password?: string;
     role?:string;
-    photo?: string | File
+    photo?: string
   }
 
   

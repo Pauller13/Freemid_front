@@ -24,7 +24,8 @@ export class AuthService {
           first_name: response.first_name,
           last_name: response.last_name,
           id:response.user_id,
-          role:response.role
+          role:response.role,
+          photo:response.photo
         };
 
         localStorage.setItem('user_details', JSON.stringify(userDetails));

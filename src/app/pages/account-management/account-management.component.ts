@@ -64,22 +64,31 @@ export class AccountManagementComponent implements OnInit {
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      console.log('File selected:', file)}
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.user.photo = e.target.result; // contient 'data:image/png;base64,...'
+        console.log('Photo en base64:', this.user.photo);
+      };
+      reader.readAsDataURL(file);
+    }
   }
+  
+  
  
-
-
-
-
   onSubmit() {
+    // S'assurer que la photo est assignée
+    this.client.user.photo = this.user.photo; // On attribue la photo
+    console.log('User Data Photo:', this.client.user.photo);
     console.log('Client Data Submitted:', this.client);
-    this.clientService.updateClientProfile(this.client).subscribe(response => {
-            console.log('Profile updated:', response);
-        }, error => {
-            console.error('Error updating profile:', error);
-        });
     
-}
+    this.clientService.updateClientProfile(this.client).subscribe(response => {
+      console.log('Profile updated:', response);
+    }, error => {
+      console.error('Error updating profile:', error);
+    });
+  }
+  
+  
 changePassword() {
   if (this.newPassword !== this.confirmPassword) {
     this.passwordChangeError = 'Les mots de passe ne correspondent pas.';
