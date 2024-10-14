@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Gestion du compte Client" [options]="false">
+      <h5>Détails Personnels</h5>
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="photo">Photo de Profil</label>
+              <input type="file" class="form-control" id="photo" accept="image/*" (change)="onFileSelected($event)" />
+            </div>
+            <div class="form-group">
+              <label for="firstName">Prénom</label>
+              <input type="text" class="form-control" id="firstName" [(ngModel)]="client.user.first_name"
+                name="first_name" placeholder="Entrez votre prénom" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Nom</label>
+              <input type="text" class="form-control" id="lastName" [(ngModel)]="client.user.last_name" name="last_name"
+                placeholder="Entrez votre nom" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="client.user.email" name="email"
+                placeholder="Entrez votre email" required />
+            </div>
+            <div class="form-group">
+              <label for="username">Nom d'utilisateur</label>
+              <input type="text" class="form-control" id="username" [(ngModel)]="client.user.username" name="username"
+                placeholder="Entrez votre nom d'utilisateur" required />
+            </div>
+            <div class="form-group">
+              <label for="companyDescription">Description de la société</label>
+              <textarea class="form-control" id="companyDescription" [(ngModel)]="client.company_description"
+                name="company_description" rows="3" placeholder="Décrivez votre société"></textarea>
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="terms" required />
+              <label class="form-check-label" for="terms">J'accepte les conditions générales</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Changer le Mot de Passe</h5>
+          <form (ngSubmit)="changePassword()">
+            <div class="form-group">
+              <label for="currentPassword">Mot de Passe Actuel</label>
+              <input type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword"
+                name="currentPassword" required />
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Nouveau Mot de Passe</label>
+              <input type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirmer le Nouveau Mot de Passe</label>
+              <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword"
+                name="confirmPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Changer le Mot de Passe</button>
+            <div *ngIf="passwordChangeError" class="text-danger">{{ passwordChangeError }}</div>
+          </form>
+          <button type="button" class="btn btn-secondary mt-3" (click)="openInfoModal()">Ajouter des Informations
+            Supplémentaires</button>
+        </div>
+          
+          
+
+        <!-- Modal pour les informations supplémentaires -->
+        <div class="modal" *ngIf="showInfoModal" (click)="closeInfoModal()">
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeInfoModal()">&times;</span>
+            <h2>Ajouter ou Modifier des Informations Supplémentaires</h2>
+
+            <div class="form-group additional-info-container">
+              <div *ngFor="let info of client.additional_info; let i = index" class="info-entry">
+                <div class="info-header">
+                  <h4>Info {{ i + 1 }}</h4>
+                  <button type="button" class="remove-info" (click)="removeInfo(i)">Supprimer</button>
+                </div>
+
+                <div class="info-fields">
+                  <input type="text" [(ngModel)]="info.name" name="infoName{{i}}" placeholder="Nom de l'information" />
+                  <textarea [(ngModel)]="info.description" name="infoDescription{{i}}"
+                    placeholder="Description de l'information"></textarea>
+                </div>
+              </div>
+
+              <button type="button" class="add-info" (click)="addInfo()">Ajouter une information</button>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </app-card>
+  </div>
+</div>

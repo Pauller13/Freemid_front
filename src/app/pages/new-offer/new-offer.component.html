@@ -1,0 +1,93 @@
+<div class="container">
+  <app-card cardTitle="Création d'une Nouvelle Offre" [options]="false">
+    <form (ngSubmit)="onSubmit()" #offerForm="ngForm">
+      <h5>Informations de l'Offre</h5>
+      <hr />
+
+      <div class="form-group">
+        <label for="title">Titre de l'Offre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          [(ngModel)]="offer.title"
+          required
+          placeholder="Entrez le titre de l'offre"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          [(ngModel)]="offer.description"
+          rows="4"
+          required
+          placeholder="Décrivez les détails de l'offre"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select
+          class="form-control"
+          id="category"
+          name="category"
+          [(ngModel)]="offer.category"
+          required
+        >
+          <option value="" disabled selected>Choisissez une catégorie</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="budget">Budget (en EUR)</label>
+        <input
+          type="number"
+          class="form-control"
+          id="budget"
+          name="budget"
+          [(ngModel)]="offer.budget"
+          required
+          placeholder="Entrez le budget estimé"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Date Limite</label>
+        <input
+          type="date"
+          class="form-control"
+          id="deadline"
+          name="deadline"
+          [(ngModel)]="offer.deadline"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="skills">Compétences Requises</label>
+        <input
+          type="text"
+          class="form-control"
+          id="skills"
+          name="skills"
+          [(ngModel)]="offer.skills"
+          placeholder="Séparez les compétences par des virgules"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!offerForm.form.valid">
+        Publier l'Offre
+      </button>
+    </form>
+  </app-card>
+
+  <div *ngIf="submissionSuccess" class="alert alert-success mt-3">
+    L'offre a été publiée avec succès !
+  </div>
+</div>

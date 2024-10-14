@@ -15,7 +15,7 @@
 
   <!-- account-section start -->
   <div class="col-xl-6 col-md-12">
-    <app-card cardTitle="Projects progress" [options]="false">
+    <app-card cardTitle="Projects Progress" [options]="false">
       <apx-chart
         [chart]="chartOptions.chart!"
         [dataLabels]="chartOptions.dataLabels!"
@@ -30,5 +30,33 @@
     </app-card>
   </div>
 
+  <!-- New section for freelance statistics start -->
+  <div class="col-xl-6 col-md-12">
+    <app-card cardTitle="Freelancer Statistics" [options]="false">
+      <apx-chart
+        [chart]="chartOptions_1.chart!"
+        [dataLabels]="chartOptions_1.dataLabels!"
+        [stroke]="chartOptions_1.stroke!"
+        [series]="chartOptions_1.series!"
+        [colors]="chartOptions_1.colors!"
+        [fill]="chartOptions_1.fill!"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <!-- New section for freelance statistics end -->
 
+  <!-- New section for active projects start -->
+  <div class="col-xl-6 col-md-12">
+    <app-card cardTitle="Active Projects" [options]="false">
+      <apx-chart
+        [chart]="chartOptions_2.chart!"
+        [dataLabels]="chartOptions_2.dataLabels!"
+        [stroke]="chartOptions_2.stroke!"
+        [series]="chartOptions_2.series!"
+        [colors]="chartOptions_2.colors!"
+        [fill]="chartOptions_2.fill!"
+      ></apx-chart>
+    </app-card>
+  </div>
+  <!-- New section for active projects end -->
 </div>
