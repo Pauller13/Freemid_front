@@ -1,4 +1,4 @@
-<p-toast position="top-right"></p-toast>
+
 <router-outlet>
   <app-spinner></app-spinner>
 </router-outlet>

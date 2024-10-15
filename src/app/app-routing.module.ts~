@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // project import
-import { AdminComponent } from './presentations/theme/layout/admin/admin.component';
-import { GuestComponent } from './presentations/theme/layout/guest/guest.component';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AdminComponent } from './theme/layout/admin/admin.component';
+import { GuestComponent } from './theme/layout/guest/guest.component';
+import { AuthGuard } from './guard/auth.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
@@ -19,16 +19,16 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadComponent: () => import('./presentations/pages/dashboard/dash-analytics.component'),
+        loadComponent: () => import('./pages/dashboard/dash-analytics.component'),
         canActivate: [AuthGuard],data: { roles: ['client'] }
       },
       {
         path: 'account-management',
-        loadComponent: () => import('./presentations/pages/account-management/account-management.component').then(m => m.AccountManagementComponent),
+        loadComponent: () => import('./pages/account-management/account-management.component').then(m => m.AccountManagementComponent),
         canActivate: [AuthGuard],data: { roles: ['client'] }
       },
       { path: 'new_offer',
-        loadComponent: () => import('./presentations/pages/new-offer/new-offer.component').then(m => m.NewOfferComponent),
+        loadComponent: () => import('./pages/new-offer/new-offer.component').then(m => m.NewOfferComponent),
         canActivate: [AuthGuard],data: { roles: ['client'] }
       }
     ]
@@ -39,11 +39,11 @@ const routes: Routes = [
     children: [
       {
         path: 'auth/signup',
-        loadComponent: () => import('./presentations/pages/general/authentication/sign-up/sign-up.component')
+        loadComponent: () => import('./pages/general/authentication/sign-up/sign-up.component')
       },
       {
         path: 'auth/signin',
-        loadComponent: () => import('./presentations/pages/general/authentication/sign-in/sign-in.component')
+        loadComponent: () => import('./pages/general/authentication/sign-in/sign-in.component')
       }
     ]
   },
