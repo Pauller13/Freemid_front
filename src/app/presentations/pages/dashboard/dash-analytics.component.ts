@@ -1,10 +1,10 @@
 // angular import
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
 // project import
-import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
-import { ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
-import { ProductSaleComponent } from './product-sale/product-sale.component';
+import {SharedModule} from 'src/app/presentations/theme/shared/shared.module';
+import {ApexTheme, NgApexchartsModule} from 'ng-apexcharts';
+import {ProductSaleComponent} from './product-sale/product-sale.component';
 
 import {
   ChartComponent,
@@ -244,30 +244,30 @@ export default class DashAnalyticsComponent {
       }
     };
   }
+
   cards = [
     {
       background: 'bg-c-blue',
-      title: 'collaboartor',
-      icon: 'icon-shopping-cart',
+      title: 'Collaborator',
+      icon: 'icon-user',
       number: '25',
     },
     {
       background: 'bg-c-green',
       title: 'Projects',
-      icon: 'icon-tag',
-      number: '1641',
+      icon: 'icon-briefcase',
+      number: '16',
     },
     {
       background: 'bg-c-yellow',
       title: 'Diary',
-      icon: 'icon-repeat',
+      icon: 'icon-calendar',
       number: '12',
-
     },
     {
       background: 'bg-c-red',
       title: 'Messages',
-      icon: 'icon-shopping-cart',
+      icon: 'icon-envelope',
       number: '20',
     }
   ];

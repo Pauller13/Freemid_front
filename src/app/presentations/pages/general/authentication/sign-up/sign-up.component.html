@@ -1,56 +1,74 @@
-<div class="auth-wrapper">
-  <div class="auth-content">
-    <div class="card">
+<div class="auth-wrapper container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="auth-content" style="width: 100%; max-width: 900px;">
+    <div class="card w-100">
       <div class="row align-items-center text-center">
-        <div class="col-md-12">
+        <div class="col-12">
           <div class="card-body">
             <img src="assets/images/logo-dark.png" alt="logo" class="img-fluid mb-4" />
             <h4 class="mb-3 f-w-400">Sign up</h4>
             <form [class.was-validated]="!formUser.valid" novalidate="" [formGroup]="formUser">
-              <!-- First Name -->
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Nom" aria-label="First Name"
-                       formControlName="first_name" name="first_name" />
+              <div class="row">
+                <!-- First Name -->
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Nom" aria-label="First Name"
+                           formControlName="first_name" name="first_name" />
+                  </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Prénoms" aria-label="Last Name"
+                           formControlName="last_name" name="last_name" />
+                  </div>
+                </div>
               </div>
 
-              <!-- Last Name -->
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Prénoms" aria-label="Last Name"
-                       formControlName="last_name" name="last_name" />
+              <div class="row">
+                <!-- Username -->
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                           formControlName="username" name="username"/>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6 mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon2"><i class="feather icon-mail"></i></span>
+                    <input type="email" class="form-control" placeholder="Email address" aria-label="Email"
+                           formControlName="email" />
+                  </div>
+                </div>
               </div>
 
-              <!-- Username -->
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                       formControlName="username" name="username"/>
-              </div>
+              <div class="row">
+                <!-- Password -->
+                <div class="col-md-6 mb-4">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                           formControlName="password" />
+                  </div>
+                </div>
 
-              <!-- Email -->
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2"><i class="feather icon-mail"></i></span>
-                <input type="email" class="form-control" placeholder="Email address" aria-label="Email"
-                       formControlName="email" />
-              </div>
-
-              <!-- Password -->
-              <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Password" aria-label="Password"
-                       formControlName="password" />
-              </div>
-
-              <!-- Confirm Password -->
-              <div class="input-group mb-4">
-                <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password"
-                       formControlName="confirm_password" />
+                <!-- Confirm Password -->
+                <div class="col-md-6 mb-4">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password"
+                           formControlName="confirm_password" />
+                  </div>
+                </div>
               </div>
 
               <!-- Role Selection -->
-              <div class="input-group mb-4">
+              <div class="mb-4">
                 <select class="form-select" formControlName="role">
                   <option value="">Selectionnez</option>
                   <option *ngFor="let role of roles" [value]="role">{{ role }}</option>

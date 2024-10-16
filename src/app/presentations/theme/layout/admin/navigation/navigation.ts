@@ -37,12 +37,12 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Gestion du compte',
         type: 'item',
         url: '/account-management',
-        icon: ''
+        icon: 'feather icon-user'
       },
       {
       id: 'offer',
       title: 'Offres',
-      type: 'collapse', 
+      type: 'collapse',
       icon: 'feather icon-tag',
       children: [
         {
