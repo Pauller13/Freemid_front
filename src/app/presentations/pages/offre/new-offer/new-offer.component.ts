@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CardComponent } from '../../theme/shared/components/card/card.component';
-import { SharedModule } from '../../theme/shared/shared.module';
+import { CardComponent } from '../../../theme/shared/components/card/card.component';
+import { SharedModule } from '../../../theme/shared/shared.module';
 import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
 import { OfferSkill } from 'src/app/domains/interfaces/offer/offerSkill.interface';
 import { OfferService } from 'src/app/core/services/offer/offer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-offer',
@@ -24,8 +25,9 @@ export class NewOfferComponent {
 
   categories = ['Développement Web', 'Design', 'Rédaction', 'Marketing', 'Consultation'];
   submissionSuccess = false;
+  currentPage: number =1;
 
-  constructor(private offerService: OfferService) {}
+  constructor(private offerService: OfferService, private router: Router) {}
 
   addSkill() {
     const skill: OfferSkill = { skill:{
@@ -38,12 +40,20 @@ export class NewOfferComponent {
     this.offer.required_skills.splice(index, 1);
   }
 
+  goToPage(page: number) {
+    this.currentPage = page; 
+    console.log(this.offer);
+  }
+
   onSubmit() {
     console.log('Offre soumise:', this.offer);
     this.offerService.createOffer(this.offer).subscribe(
       (response) => {
         console.log('Offre créée avec succès:', response);
         this.submissionSuccess = true;
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 2000);
 
         // Réinitialiser le formulaire après la soumission
         this.offer = {

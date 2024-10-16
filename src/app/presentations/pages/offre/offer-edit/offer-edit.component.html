@@ -1,0 +1,62 @@
+<app-card cardTitle="Modification de l'Offre" [options]="false">
+  <form *ngIf="offer" (ngSubmit)="updateOffer()" #offerForm="ngForm">
+    <div *ngIf="currentPage === 1">
+      <h5>Informations de l'Offre</h5>
+      <hr />
+
+      <div class="form-group">
+        <label for="title">Titre de l'Offre</label>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="offer.title" required placeholder="Entrez le titre de l'offre" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" [(ngModel)]="offer.description" rows="4" required placeholder="Décrivez les détails de l'offre"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="budget">Budget (en CFA)</label>
+        <input type="number" class="form-control" id="budget" name="budget" [(ngModel)]="offer.budget" required placeholder="Entrez le budget estimé" />
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Date Limite</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="deadline" 
+          [ngModel]="offer.deadline | date: 'yyyy-MM-dd'" 
+          (ngModelChange)="onDeadlineChange($event)" 
+          name="deadline" 
+          required 
+        />
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        <button type="button" class="btn btn-secondary" (click)="goToPage(2)">Suivant</button>
+      </div>
+    </div>
+
+    <div *ngIf="currentPage === 2">
+      <h5>Compétences Requises</h5>
+      <hr />
+      <div class="form-scroll">
+        <div *ngFor="let skill of offer.required_skills; let i = index" class="form-group">
+          <label for="skill{{i}}">Compétence {{i + 1}}</label>
+          <input type="text" class="form-control" id="skill{{i}}" [(ngModel)]="skill.skill.name" name="skill{{i}}" placeholder="Nom de la compétence" required />
+          <label for="levelRequired{{i}}">Niveau Requis</label>
+          <input type="number" class="form-control" id="levelRequired{{i}}" [(ngModel)]="skill.level_required" name="levelRequired{{i}}" placeholder="Niveau requis (ex: 1-débutant, 2-intermédiaire, 3-expert)" required />
+          <button type="button" class="btn btn-danger" (click)="removeSkill(i)">Supprimer cette compétence</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" (click)="addSkill()">Ajouter une compétence</button>
+
+      <div class="d-flex justify-content-between mt-4">
+        <button type="button" class="btn btn-secondary" (click)="goToPage(1)">Précédent</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!offerForm.form.valid">Modifierl'Offre</button>
+      </div>
+    </div>
+  </form>
+</app-card>
+

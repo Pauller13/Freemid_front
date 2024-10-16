@@ -1,0 +1,21 @@
+<div class="profile-preview">
+    <div class="profile-details">
+      <div class="profile-photo">
+        <img [src]="client.user.photo || 'default-avatar.png'" alt="Photo de {{ client.user.first_name }}" />
+      </div>
+      <div class="profile-info">
+        <h3>{{ client.user.first_name }} {{ client.user.last_name }}</h3>
+        <p><strong>Email:</strong> {{ client.user.email }}</p>
+        <p><strong>Nom d'utilisateur:</strong> {{ client.user.username }}</p>
+        <p><strong>Description de la société:</strong> {{ client.company_description }}</p>
+      </div>
+    </div>
+    <div class="additional-info">
+      <h5>Informations Supplémentaires</h5>
+      <ul>
+        <li *ngFor="let info of client.additional_info">
+          <strong>{{ info.name }}:</strong> {{ info.description }}
+        </li>
+      </ul>
+    </div>
+  </div>

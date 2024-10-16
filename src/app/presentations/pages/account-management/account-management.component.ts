@@ -81,6 +81,7 @@ export class AccountManagementComponent implements OnInit {
     this.client.user.photo = this.user.photo; 
     console.log('User Data Photo:', this.client.user.photo);
     console.log('Client Data Submitted:', this.client);
+
     
     this.clientService.updateClientProfile(this.client).subscribe(response => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated successfully' });

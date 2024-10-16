@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
 
 @Injectable({
@@ -11,28 +11,25 @@ export class OfferService {
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour créer une nouvelle offre
   createOffer(offer: Offer): Observable<Offer> {
     return this.http.post<Offer>(this.apiUrl, offer);
   }
 
-//   // Méthode pour récupérer toutes les offres
-//   getOffers(): Observable<Offer[]> {
-//     return this.http.get<Offer[]>(this.apiUrl);
-//   }
+  getOffers(): Observable<Offer[]> {
+    return this.http.get<{ client_offers: Offer[] }>(this.apiUrl).pipe(
+      map(response=> response.client_offers))
+  
+  }
 
-//   // Méthode pour récupérer une offre par son ID
-//   getOfferById(id: number): Observable<Offer> {
-//     return this.http.get<Offer>(`${this.apiUrl}${id}/`);
-//   }
+  getOfferById(id: number): Observable<Offer> {
+    return this.http.get<Offer>(`${this.apiUrl}${id}/`);
+  }
 
-//   // Méthode pour mettre à jour une offre
-//   updateOffer(id: number, offer: Offer): Observable<Offer> {
-//     return this.http.put<Offer>(`${this.apiUrl}${id}/`, offer);
-//   }
+  updateOffer(offer: Offer): Observable<Offer> {
+    return this.http.put<Offer>(`${this.apiUrl}${offer.id}/`, offer);
+  }
 
-//   // Méthode pour supprimer une offre
-//   deleteOffer(id: number): Observable<void> {
-//     return this.http.delete<void>(`${this.apiUrl}${id}/`);
-//   }
+  deleteOffer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}${id}/`);
+  }
 }

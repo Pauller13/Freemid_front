@@ -1,0 +1,46 @@
+<div class="offer-list">
+  <input
+    type="text"
+    placeholder="Rechercher votre offre..."
+    (input)="handleSearchChange($event)"
+    class="search-input"
+  />
+  <div *ngIf="isSearching">Recherche en cours...</div>
+  <div class="offer-count">
+    Nombre d'offres disponibles: {{ filteredOffers.length }}
+  </div>
+  <div class="offer-cards">
+    <div class="offer-card" *ngFor="let offer of filteredOffers"> 
+      <div class="card-header">
+        <h2>{{ offer.title }}</h2>
+        <span class="status">{{ getTimeRemaining(offer.deadline) }}</span>
+      </div>
+      <div class="card-content">
+        <p><strong>Description:</strong> {{ offer.description }}</p>
+        <p><strong>Budget:</strong> {{ offer.budget }} €</p>
+        <p><strong>Date limite:</strong> {{ offer.deadline | date: 'dd/MM/yyyy' }}</p>
+        <p><strong>Compétences requises:</strong> {{offer.required_skills_name}}</p>
+      </div>
+      <div class="card-footer">
+        <button (click)=" showProposals(offer.id)" class="button-details">
+          Voir les propositions
+        </button>
+        <button (click)="updateOffer(offer.id)" class="button-details">
+          Modifier
+        </button>
+      </div>
+      <div class="card-footer">
+        <button (click)="deleteOffer(offer.id)" class="button-danger">
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+  <div  *ngIf="offers.length > 6" class="pagination-controls">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+    
+    <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+    
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
+  </div>
+</div>

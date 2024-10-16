@@ -1,0 +1,14 @@
+.form-page {
+    padding: 15px; // Espacement interne
+    max-height: 400px; // Ajustez la hauteur selon vos besoins
+    overflow-y: auto; // Ajoute un défilement vertical
+  }
+  
+  .form-scroll {
+    max-height: 300px; // Hauteur maximale pour le défilement des compétences
+    overflow-y: auto; // Ajoute un défilement vertical
+    border: 1px solid #ddd; // Optionnel : Ajoute une bordure pour mieux visualiser
+    padding: 10px; // Espacement interne
+    border-radius: 5px; // Coins arrondis
+    background-color: #f8f9fa; // Couleur de fond légère pour une meilleure visibilité
+  }

@@ -28,6 +28,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './core/interceptors/auth.jwt.interceptor';
 import { ToastModule } from 'primeng/toast';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,7 @@ import { ToastModule } from 'primeng/toast';
     HttpClientModule,
     RouterModule,
     ToastModule,
+    CKEditorModule
 ],
   providers: [
   {

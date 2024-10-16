@@ -1,0 +1,67 @@
+.freelancer-list {
+    .search-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    .freelancer-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+  
+      .freelancer-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        width: calc(33.33% - 20px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+  
+        .card-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+  
+          .freelancer-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+  
+          h2 {
+            margin: 0;
+            flex-grow: 1;
+          }
+        }
+  
+        .card-footer {
+          display: flex;
+          justify-content: space-between;
+          margin-top: auto;
+  
+          .button-details,
+          .button-message {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+  
+          .button-details {
+            background-color: #007bff;
+            color: white;
+          }
+  
+          .button-message {
+            background-color: #28a745;
+            color: white;
+          }
+        }
+      }
+    }
+  }

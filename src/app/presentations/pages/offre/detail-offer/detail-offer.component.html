@@ -1,0 +1,32 @@
+<div *ngIf="offer">
+    <h1>Détails de l'Offre: {{ offer.title }}</h1>
+    <p><strong>Description:</strong> {{ offer.description }}</p>
+    <p><strong>Budget:</strong> {{ offer.budget}}</p>
+    
+    <h2>Propositions</h2>
+    <input type="text" pInputText placeholder="Rechercher par freelancer ou message" (input)="filterProposals($event)" />
+    
+    <p-table [value]="filteredProposals" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Freelancer</th>
+          <th>Budget Proposé</th>
+          <th>Date Limite</th>
+          <th>Message</th>
+          <th>Details</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-proposal>
+        <tr>
+          <td>{{ proposal.freelancer.user.first_name }} {{ proposal.freelancer.user.last_name }}</td> 
+          <td>{{ proposal.proposed_budget }}</td>
+          <td>{{ proposal.proposed_deadline }}</td>
+          <td>{{ proposal.message }}</td>
+          <td>
+            <a [routerLink]="['/freelancer', proposal.freelancer.id]">Voir le profil</a>
+            <button>Accepter</button>
+        </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>

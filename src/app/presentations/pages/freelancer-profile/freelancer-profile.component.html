@@ -1,0 +1,40 @@
+<div *ngIf="freelancer">
+    <h1>{{ freelancer.user.first_name }} {{ freelancer.user.last_name }}</h1>
+    <p><strong>Email:</strong> {{ freelancer.user.email }}</p>
+    <p><strong>Biographie:</strong> {{ freelancer.biography }}</p>
+    <p><strong>Compétences:</strong> {{ freelancer.skills.join(', ') }}</p>
+    
+    <h2>Certificats</h2>
+    <ul>
+      <li *ngFor="let certificate of freelancer.certificates">
+        <a [href]="certificate" target="_blank">{{ certificate }}</a>
+      </li>
+    </ul>
+  
+    <h2>Portfolio</h2>
+    <ul>
+      <li *ngFor="let item of freelancer.portfolio">
+        <a [href]="item" target="_blank">{{ item }}</a>
+      </li>
+    </ul>
+  
+    <h2>Tarification</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of freelancer.rate_card | keyvalue">
+          <td>{{ service.key }}</td>
+          <td>{{ service.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h2>Contact</h2>
+    <button class="btn btn-primary">Envoyer un Message</button>
+    <button class="btn btn-success">Faire une Proposition</button>
+  </div>

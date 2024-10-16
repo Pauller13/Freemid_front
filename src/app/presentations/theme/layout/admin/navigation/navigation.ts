@@ -38,7 +38,51 @@ export const NavigationItems: NavigationItem[] = [
         type: 'item',
         url: '/account-management',
         icon: ''
-      }
+      },
+      {
+      id: 'offer',
+      title: 'Offres',
+      type: 'collapse', 
+      icon: 'feather icon-tag',
+      children: [
+        {
+          id: 'new-offer',
+          title: 'Nouvelle Offre',
+          type: 'item',
+          url: '/new-offer',
+          icon: 'feather icon-plus'
+        },
+        {
+          id: 'list-offer',
+          title: 'Liste des Offres',
+          type: 'item',
+          url: '/offers-list',
+          icon: 'feather icon-list'
+        }
+      ]
+      },
+      {
+        id: 'freelancer',
+        title: 'Freelancers',
+        type: 'collapse',
+        icon: 'feather icon-user',
+        children: [
+          {
+            id: 'collabateurs',
+            title: 'Mes collabateurs',
+            type: 'item',
+            url: '/collaborateurs',
+            icon: 'feather icon-user'
+          },
+          {
+            id: 'freelancer-list',
+            title: 'Liste des freelancers',
+            type: 'item',
+            url: '/freelancer-list',
+            icon: 'feather icon-user-plus'
+          }
+        ]
+      },
     ]
   },
 
