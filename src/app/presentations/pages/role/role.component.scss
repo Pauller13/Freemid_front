@@ -1,0 +1,43 @@
+$freelancer-color: #007bff;
+$client-color: #28a745;
+
+.selection-container {
+    text-align: center;
+    margin-top: 50px;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .role-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        .role-button {
+            padding: 50px; // Taille de la zone cliquable
+            font-size: 24px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px; // Largeur fixe
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Ombre pour effet de profondeur
+
+            &.freelancer {
+                background-color: $freelancer-color; // Couleur pour Freelancer
+            }
+
+            &.client {
+                background-color: $client-color; // Couleur pour Client
+            }
+
+            &:hover {
+                opacity: 0.8; // Effet de survol
+            }
+        }
+    }
+}

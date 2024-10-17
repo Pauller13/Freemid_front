@@ -16,7 +16,7 @@ import { MessageService } from 'primeng/api';
 })
 export default class SignUpComponent implements OnInit {
   formUser!: FormGroup;
-  roles = ['client', 'freelancer'];
+  userRole!: string | null
 
   constructor(private userService: UserService, private router: Router, private fbBuilderUser: FormBuilder, private messageService: MessageService) {}
   ngOnInit(): void {
@@ -27,22 +27,29 @@ export default class SignUpComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirm_password: ['', [Validators.required,Validators.minLength(6)]],
-    role: ['', [Validators.required]],
+    role: ['']
   })
     const token = localStorage.getItem('jwt_token');
 
     if (token){
       this.router.navigate(['/dashboard']);
     }
+    this.userRole = localStorage.getItem('userRole'); // Récupération du rôle
+    if (!this.userRole) {
+      this.router.navigate(['/role']);
+    }
   }
   submit() {
     console.log(this.formUser.value);
+    
     if (this.validateForm()) {
+      this.formUser.patchValue({ role: this.userRole });
       this.userService.register(this.formUser.value).subscribe(
         (data: User): void => {
           console.log('Formulaire soumis avec succès!', data);
-          this.messageService.add({ severity: 'success', summary: 'Succes', detail: `Le compte de l'utilisateur ${data.username} creé avec succes`, life: 500 });
+          this.messageService.add({ severity: 'success', summary: 'Succes', detail: `Le compte de l'utilisateur ${data.username} creé avec succes`, life: 2000 });
           this.router.navigate(['/auth/signin']);
+          localStorage.removeItem('userRole')
         },
         (error: any): void => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });

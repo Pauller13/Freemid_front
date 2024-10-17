@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
-import { OfferSkill } from 'src/app/domains/interfaces/offer/offerSkill.interface';
 import { OfferService } from 'src/app/core/services/offer/offer.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
