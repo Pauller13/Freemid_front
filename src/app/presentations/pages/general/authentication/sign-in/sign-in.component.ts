@@ -35,6 +35,7 @@ export default class SignInComponent implements OnInit {
     if (token) {
       this.router.navigate(['/dashboard']);
     }
+    localStorage.removeItem('userRole')
   }
 
   connect() {
@@ -47,7 +48,7 @@ export default class SignInComponent implements OnInit {
 
     this.authService.login(credentials).subscribe(
       (response) => {
-        console.log('Connexion réussie', response);
+        this.messageService.add({ severity: 'success', summary: 'Succes', detail: `Connection réussi`, life: 2000 });
         this.router.navigate(['/dashboard']);
       },
       (error) => {

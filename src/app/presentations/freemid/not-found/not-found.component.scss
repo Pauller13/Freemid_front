@@ -1,0 +1,35 @@
+// not-found.component.scss
+
+$primary-color: #007bff; // Couleur principale
+$error-color: #dc3545;    // Couleur rouge pour les erreurs
+$text-color: #333;        // Couleur du texte
+
+.not-found {
+  text-align: center;
+  margin-top: 50px;
+
+  h1 {
+    font-size: 3rem;
+    color: $error-color;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: $text-color;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}

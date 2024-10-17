@@ -6,6 +6,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './presentations/theme/layout/admin/admin.component';
 import { GuestComponent } from './presentations/theme/layout/guest/guest.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import path from 'path';
+import { FreemidComponent } from './presentations/freemid/freemid.component';
+import { LandingPageComponent } from './presentations/freemid/landing-page/landing-page.component';
+import { FeatureComponent } from './presentations/freemid/feature/feature.component';
+import { PricingComponent } from './presentations/freemid/pricing/pricing.component';
+import { AboutUsComponent } from './presentations/freemid/about-us/about-us.component';
+import { ContactComponent } from './presentations/freemid/contact/contact.component';
+import { NotFoundComponent } from './presentations/freemid/not-found/not-found.component';
+import { RoleComponent } from './presentations/pages/role/role.component';
 
 const routes: Routes = [
   {
@@ -14,7 +23,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/auth/signin',
+        redirectTo: '/freemid',
         pathMatch: 'full'
       },
       {
@@ -60,6 +69,11 @@ const routes: Routes = [
       loadComponent: () => import('./presentations/pages/freelancer-profile/freelancer-profile.component').then(m => m.FreelancerProfileComponent),
       canActivate: [AuthGuard],data: { roles: ['client'] }
     },
+    {
+      path: 'dashboard-freelance',
+        loadComponent: () => import('./presentations/pages/dashboard-freelance/dashboard-freelance.component').then(m => m.DashboardFreelanceComponent),
+        canActivate: [AuthGuard],data: { roles: ['freelancer'] }
+      },
       
     ]
   },
@@ -74,10 +88,26 @@ const routes: Routes = [
       {
         path: 'auth/signin',
         loadComponent: () => import('./presentations/pages/general/authentication/sign-in/sign-in.component')
+      },
+      {
+        path: 'role',
+        loadComponent: () => import ('./presentations/pages/role/role.component').then(m =>m.RoleComponent)
+      },
+      {
+        path:'freemid',
+        component: FreemidComponent,
+        children: [
+          { path: '', component: LandingPageComponent },
+          { path: 'feature', component: FeatureComponent },
+          { path: 'pricing', component: PricingComponent },
+          { path: 'about', component: AboutUsComponent },
+          { path: 'contact', component: ContactComponent },
+          
+        ]
       }
     ]
   },
-  { path: '**', redirectTo: '/dashboard' },
+  { path: '**', component: NotFoundComponent } ,
 ];
 
 @NgModule({
