@@ -18,10 +18,10 @@ import { Proposal } from 'src/app/domains/interfaces/proposal/proposal.interface
 
 })
 export class OfferListComponent implements OnInit {
-  offers: Offer[]=[]; 
+  offers: Offer[]=[];
   selectedOffer!: Offer;
   selectedProposals!: Proposal[];
-  filteredOffers: Offer[] = []; 
+  filteredOffers: Offer[] = [];
   isSearching = false;
   paginatedOffers: Offer[] = [];
   currentPage: number = 1;
@@ -29,11 +29,11 @@ export class OfferListComponent implements OnInit {
   confirm : boolean = false;
 
   constructor(
-    private offerService: OfferService, 
-    private router: Router, 
-    private baseService: BaseService, 
+    private offerService: OfferService,
+    private router: Router,
+    private baseService: BaseService,
     private proposalService: ProposalService) {
-    
+
   }
   ngOnInit(): void {
     this.loadOffers();
@@ -43,11 +43,11 @@ export class OfferListComponent implements OnInit {
     this.offerService.getOffers().subscribe((data: Offer[]) => {
       console.log('Offres:', data);
       this.offers = data;
-      this.filteredOffers = [...this.offers]; 
+      this.filteredOffers = [...this.offers];
     },err=>{
       console.log(err);
     })
-  
+
   }
 
   handleSearchChange(event: Event) {
@@ -55,8 +55,9 @@ export class OfferListComponent implements OnInit {
     this.isSearching = true;
 
     // Filtrer les offres
-    this.filteredOffers = this.offers.filter(offer => 
-      offer.title.toLowerCase().includes(query) || 
+    this.filteredOffers = this.offers.filter(offer =>
+      offer.title.toLowerCase().includes(query) ||
+
       offer.description.toLowerCase().includes(query)
     );
 

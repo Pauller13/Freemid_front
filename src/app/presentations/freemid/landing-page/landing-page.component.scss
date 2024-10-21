@@ -1,0 +1,69 @@
+/* Style Général */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Hero Section */
+.hero-title {
+    font-size: 2.5rem;
+    color: #343a40;
+}
+
+.hero-description {
+    font-size: 1rem;
+    margin: 15px 0;
+    color: #6c757d;
+}
+
+.hero-banner__img img {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.secondary-button {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    transform: scale(1.05);
+}
+
+/* Section Features */
+.card-feature {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.card-feature:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.card-feature__icon {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}

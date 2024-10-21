@@ -3,11 +3,12 @@ import { Component, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, Event } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-// project import
-import { NavigationItem, NavigationItems } from 'src/app/presentations/theme/layout/admin/navigation/navigation';
+// Project import
+import { NavigationItem } from 'src/app/presentations/theme/layout/admin/navigation/navigation';
+import { NavigationItems } from "../../../layout/admin/navigation/items/navigation.client";
+import { NavigationItems2 } from "../../../layout/admin/navigation/items/navigation.freelancer";
 
-interface titleType {
-  // eslint-disable-next-line
+interface TitleType {
   url: any;
   title: string;
   breadcrumbs: unknown;
@@ -22,23 +23,23 @@ interface titleType {
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
-  // public props
+  // Public props
   @Input() type!: string;
 
-  navigations: NavigationItem[];
+  navigations: NavigationItem[] = []; // Initialiser comme un tableau vide
   breadcrumbList: Array<string> = [];
-  navigationList!: titleType[];
+  navigationList!: TitleType[];
 
-  // constructor
+  // Constructor
   constructor(
     private route: Router,
     private titleService: Title
   ) {
-    this.navigations = NavigationItems;
-    this.setBreadcrumb();
+    this.setNavigationItems(); // Appeler pour initialiser les éléments de navigation
+    this.setBreadcrumb(); // Appeler pour établir le fil d'Ariane
   }
 
-  // public method
+  // Public method
   setBreadcrumb() {
     this.route.events.subscribe((router: Event) => {
       if (router instanceof NavigationEnd) {
@@ -51,7 +52,7 @@ export class BreadcrumbComponent {
     });
   }
 
-  filterNavigation(navItems: NavigationItem[], activeLink: string): titleType[] {
+  filterNavigation(navItems: NavigationItem[], activeLink: string): TitleType[] {
     for (const navItem of navItems) {
       if (navItem.type === 'item' && 'url' in navItem && navItem.url === activeLink) {
         return [
@@ -64,7 +65,6 @@ export class BreadcrumbComponent {
         ];
       }
       if ((navItem.type === 'group' || navItem.type === 'collapse') && 'children' in navItem) {
-        // eslint-disable-next-line
         const breadcrumbList = this.filterNavigation(navItem.children!, activeLink);
         if (breadcrumbList.length > 0) {
           breadcrumbList.unshift({
@@ -78,5 +78,19 @@ export class BreadcrumbComponent {
       }
     }
     return [];
+  }
+
+  private setNavigationItems(): void {
+    const userDetailsString = localStorage.getItem('user_details');
+    const userDetails = userDetailsString ? JSON.parse(userDetailsString) : null;
+    const role = userDetails ? userDetails.role : null;
+    console.log(role);
+
+    // Faire varier la liste de navigation en fonction du rôle de l'utilisateur
+    if (role === 'freelancer') {
+      this.navigations = NavigationItems2; // Navigation pour les freelances
+    } else {
+      this.navigations = NavigationItems; // Navigation par défaut pour les clients/administrateurs
+    }
   }
 }

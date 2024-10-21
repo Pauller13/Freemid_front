@@ -1,10 +1,9 @@
-// angular import
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
-
-// project import
 import { environment } from 'src/environments/environment';
-import { NavigationItem, NavigationItems } from '../navigation';
+import { NavigationItem } from '../navigation';
+import {NavigationItems2} from "../items/navigation.freelancer";
+import {NavigationItems} from "../items/navigation.client";
 
 @Component({
   selector: 'app-nav-content',
@@ -12,37 +11,51 @@ import { NavigationItem, NavigationItems } from '../navigation';
   styleUrls: ['./nav-content.component.scss']
 })
 export class NavContentComponent implements OnInit {
-  // version
+  // Version
   title = 'Demo application for version numbering';
   currentApplicationVersion = environment.appVersion;
 
-  // public pops
-  navigations: NavigationItem[];
+  // Public props
+  navigations: NavigationItem[] = []; // Initialiser comme un tableau vide
   wrapperWidth!: number;
   windowWidth: number;
 
   @Output() NavMobCollapse = new EventEmitter();
-  // constructor
+
+  // Constructor
   constructor(
     private location: Location,
     private locationStrategy: LocationStrategy
   ) {
     this.windowWidth = window.innerWidth;
-    this.navigations = NavigationItems;
   }
 
-  // life cycle event
+  // Lifecycle event
   ngOnInit() {
+    this.setNavigationItems();
     if (this.windowWidth < 992) {
       document.querySelector('.pcoded-navbar')?.classList.add('menupos-static');
     }
   }
 
-  // public method
-
+  // Public method
   navMob() {
     if (this.windowWidth < 992 && document.querySelector('app-navigation.pcoded-navbar')?.classList.contains('mob-open')) {
       this.NavMobCollapse.emit();
+    }
+  }
+
+  private setNavigationItems(): void {
+    const userDetailsString = localStorage.getItem('user_details');
+    const userDetails = userDetailsString ? JSON.parse(userDetailsString) : null;
+    const role = userDetails ? userDetails.role : null;
+    console.log(role);
+
+    // Faire varier la liste de navigation en fonction du rôle de l'utilisateur
+    if (role === 'freelancer') {
+      this.navigations = NavigationItems2; // Navigation pour les freelances
+    } else {
+      this.navigations = NavigationItems; // Navigation par défaut pour les clients/administrateurs
     }
   }
 
@@ -54,19 +67,17 @@ export class NavContentComponent implements OnInit {
     }
     const link = "a.nav-link[ href='" + current_url + "' ]";
     const ele = document.querySelector(link);
-    if (ele !== null && ele !== undefined) {
+    if (ele) {
       const parent = ele.parentElement;
       const up_parent = parent?.parentElement?.parentElement;
       const last_parent = up_parent?.parentElement;
+
       if (parent?.classList.contains('pcoded-hasmenu')) {
-        parent.classList.add('pcoded-trigger');
-        parent.classList.add('active');
+        parent.classList.add('pcoded-trigger', 'active');
       } else if (up_parent?.classList.contains('pcoded-hasmenu')) {
-        up_parent.classList.add('pcoded-trigger');
-        up_parent.classList.add('active');
+        up_parent.classList.add('pcoded-trigger', 'active');
       } else if (last_parent?.classList.contains('pcoded-hasmenu')) {
-        last_parent.classList.add('pcoded-trigger');
-        last_parent.classList.add('active');
+        last_parent.classList.add('pcoded-trigger', 'active');
       }
     }
   }

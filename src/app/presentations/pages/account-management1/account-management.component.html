@@ -80,38 +80,7 @@
         <input type="checkbox" class="form-check-input" id="terms" required />
         <label class="form-check-label" for="terms">J'accepte les conditions générales</label>
       </div>
-
-      <!-- Modal pour les informations supplémentaires -->
-      <div class="modal" *ngIf="showInfoModal" (click)="closeInfoModal()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
-          <span class="close" (click)="closeInfoModal()">&times;</span>
-          <h2>Ajouter ou Modifier des Informations Supplémentaires</h2>
-
-          <div class="form-group additional-info-container">
-            <div *ngFor="let info of client.additional_info; let i = index" class="info-entry">
-              <div class="info-header">
-                <h4>Info {{ i + 1 }}</h4>
-                <button type="button" class="remove-info" (click)="removeInfo(i)">Supprimer</button>
-              </div>
-
-              <div class="info-fields">
-                <input type="text" [(ngModel)]="info.name" name="infoName{{i}}" placeholder="Nom de l'information" />
-                <textarea [(ngModel)]="info.description" name="infoDescription{{i}}"
-                          placeholder="Description de l'information"></textarea>
-              </div>
-            </div>
-
-            <button type="button" class="add-info" (click)="addInfo()">Ajouter une information</button>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary mt-3" (click)="openInfoModal()">Ajouter des Informations Supplémentaires</button>
-        <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Mettre à jour</button>
-      </div>
-
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
     </app-card>
 
     <!-- Nouvelle Carte pour la Gestion du Mot de Passe -->

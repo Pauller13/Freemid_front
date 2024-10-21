@@ -1,14 +1,47 @@
-.table {
-    width: 100%;
-    border-collapse: collapse;
-  
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-  
-    th {
-      background-color: #f2f2f2;
-    }
-  }
+/* Conteneur principal */
+.offer-detail {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s; /* Transition pour le conteneur */
+}
+
+.offer-detail:hover {
+  transform: scale(1.02); /* Légère augmentation de la taille */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Augmenter l'ombre */
+}
+
+/* Boutons */
+.accept-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Transition pour le bouton */
+}
+
+.accept-button:hover {
+  background-color: #218838; /* Changement de couleur au survol */
+  transform: scale(1.05); /* Augmentation de la taille du bouton */
+}
+
+/* Liens */
+.view-profile-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s; /* Transition pour le lien */
+}
+
+.view-profile-link:hover {
+  color: #0056b3; /* Changement de couleur au survol */
+}
+
+/* Table des propositions */
+.proposal-table tr:hover {
+  background-color: #f1f1f1; /* Changement de couleur de fond au survol de la ligne */
+  transition: background-color 0.3s; /* Transition pour la ligne */
+}
