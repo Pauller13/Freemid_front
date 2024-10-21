@@ -41,7 +41,7 @@ export class NewOfferComponent {
   }
 
   goToPage(page: number) {
-    this.currentPage = page; 
+    this.currentPage = page;
     console.log(this.offer);
   }
 
@@ -52,7 +52,7 @@ export class NewOfferComponent {
         console.log('Offre créée avec succès:', response);
         this.submissionSuccess = true;
         setTimeout(() => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/offers-list']);
         }, 2000);
 
         // Réinitialiser le formulaire après la soumission

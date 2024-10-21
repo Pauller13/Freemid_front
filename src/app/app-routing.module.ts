@@ -74,7 +74,12 @@ const routes: Routes = [
         loadComponent: () => import('./presentations/pages/dashboard-freelance/dashboard-freelance.component').then(m => m.DashboardFreelanceComponent),
         canActivate: [AuthGuard],data: { roles: ['freelancer'] }
       },
-      
+      {
+        path: 'user-collaborator',
+        loadComponent: () => import('./presentations/pages/client-collaborator/client-collaborator.component').then(m => m.ClientCollaboratorComponent),
+        canActivate: [AuthGuard], data: {roles: ['client']}
+      },
+
     ]
   },
   {
@@ -102,7 +107,7 @@ const routes: Routes = [
           { path: 'pricing', component: PricingComponent },
           { path: 'about', component: AboutUsComponent },
           { path: 'contact', component: ContactComponent },
-          
+
         ]
       }
     ]

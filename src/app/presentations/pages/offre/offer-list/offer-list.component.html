@@ -10,7 +10,7 @@
     Nombre d'offres disponibles: {{ filteredOffers.length }}
   </div>
   <div class="offer-cards">
-    <div class="offer-card" *ngFor="let offer of filteredOffers"> 
+    <div class="offer-card" *ngFor="let offer of filteredOffers">
       <div class="card-header">
         <h2>{{ offer.title }}</h2>
         <span class="status">{{ getTimeRemaining(offer.deadline) }}</span>
@@ -22,25 +22,24 @@
         <p><strong>Compétences requises:</strong> {{offer.required_skills_name}}</p>
       </div>
       <div class="card-footer">
-        <button (click)=" showProposals(offer.id)" class="button-details">
+        <button (click)="showProposals(offer.id)" class="btn btn-primary">
           Voir les propositions
         </button>
-        <button (click)="updateOffer(offer.id)" class="button-details">
+        <button (click)="updateOffer(offer.id)" class="btn btn-secondary">
           Modifier
         </button>
-      </div>
-      <div class="card-footer">
-        <button (click)="deleteOffer(offer.id)" class="button-danger">
+        <button (click)="deleteOffer(offer.id)" class="btn btn-danger">
           Supprimer
         </button>
       </div>
+
+
+    </div>
+    <div *ngIf="offers.length > 6" class="pagination-controls">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+
+      <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
     </div>
   </div>
-  <div  *ngIf="offers.length > 6" class="pagination-controls">
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
-    
-    <span>Page {{ currentPage }} sur {{ totalPages }}</span>
-    
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
-  </div>
-</div>

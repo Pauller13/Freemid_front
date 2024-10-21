@@ -1,13 +1,13 @@
 // angular import
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 // project import
 import {SharedModule} from 'src/app/presentations/theme/shared/shared.module';
-import {ApexTheme, NgApexchartsModule} from 'ng-apexcharts';
+import {ApexTheme, ChartComponent, NgApexchartsModule} from 'ng-apexcharts';
 import {ProductSaleComponent} from './product-sale/product-sale.component';
 
 import {
-  ChartComponent,
+
   ApexAxisChartSeries,
   ApexNonAxisChartSeries,
   ApexChart,
@@ -22,6 +22,7 @@ import {
   ApexTooltip,
   ApexMarkers
 } from 'ng-apexcharts';
+import {OfferService} from "../../../core/services/offer/offer.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries | ApexNonAxisChartSeries;
@@ -48,7 +49,7 @@ export type ChartOptions = {
   templateUrl: './dash-analytics.component.html',
   styleUrls: ['./dash-analytics.component.scss']
 })
-export default class DashAnalyticsComponent {
+export default class DashAnalyticsComponent  implements OnInit{
   // public props
   @ViewChild('chart') chart!: ChartComponent;
   @ViewChild('customerChart') customerChart!: ChartComponent;
@@ -58,7 +59,7 @@ export default class DashAnalyticsComponent {
   chartOptions_3!: Partial<ChartOptions>;
 
   // constructor
-  constructor() {
+  constructor( private offerService:OfferService) {
     this.chartOptions = {
       chart: {
         height: 205,
@@ -248,27 +249,26 @@ export default class DashAnalyticsComponent {
   cards = [
     {
       background: 'bg-c-blue',
-      title: 'Collaborator',
+      title: 'Collaborateur',
       icon: 'icon-user',
-      number: '25',
+      number: '2',
     },
     {
       background: 'bg-c-green',
-      title: 'Projects',
+      title: 'Offres',
       icon: 'icon-briefcase',
-      number: '16',
     },
     {
-      background: 'bg-c-yellow',
-      title: 'Diary',
-      icon: 'icon-calendar',
-      number: '12',
+      // background: 'bg-c-yellow',
+      // title: 'Agenda',
+      // icon: 'icon-calendar',
+      // number: '12',
     },
     {
-      background: 'bg-c-red',
-      title: 'Messages',
-      icon: 'icon-envelope',
-      number: '20',
+      // background: 'bg-c-red',
+      // title: 'Messages',
+      // icon: 'icon-envelope',
+      // number: '20',
     }
   ];
 
@@ -289,4 +289,11 @@ export default class DashAnalyticsComponent {
       size: 'PNG-150KB'
     }
   ];
+
+  ngOnInit(): void {
+
+    this.offerService.getOffers().subscribe(offers => {
+      this.cards[1].number = offers.length.toString(); // Met à jour le nombre d'offres
+    });
+  }
 }

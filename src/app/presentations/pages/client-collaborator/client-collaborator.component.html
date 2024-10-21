@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="header-section text-center mb-5">
+    <h2 class="page-title">Mes Collaborateurs</h2>
+    <p class="page-description">Liste des freelances avec lesquels vous avez déjà collaboré sur des projets.</p>
+  </div>
+
+  <!-- Barre de recherche pour filtrer les freelances -->
+  <div class="search-container text-center mb-4">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Rechercher un freelance par nom ou compétence..."
+      (input)="filterFreelancers($event)"
+    />
+    <div *ngIf="isSearching" class="searching-indicator">Recherche en cours...</div>
+  </div>
+
+  <!-- Affichage des freelances sous forme de carte -->
+  <div class="row">
+    <div class="col-md-4" *ngFor="let freelancer of filteredFreelancers">
+      <div class="freelancer-card card shadow-sm mb-4">
+        <img
+          [src]="freelancer.user.photo || 'assets/default-profile.png'"
+          class="card-img-top freelancer-photo"
+          alt="Photo de {{ freelancer.user.first_name }} {{ freelancer.user.last_name }}"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title mb-2">{{ freelancer.user.first_name }} {{ freelancer.user.last_name }}</h5>
+          <p class="card-text">
+            <i class="fas fa-star text-warning"></i> Compétences : {{ freelancer.user.skills.slice(0, 3).join(', ') }}
+          </p>
+          <button class="btn btn-primary btn-sm" (click)="viewProfile(freelancer.id)">Voir le profil</button>
+          <button class="btn btn-outline-secondary btn-sm" (click)="sendMessage(freelancer.id)">Envoyer un message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

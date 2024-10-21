@@ -13,7 +13,6 @@ import { NavigationItem } from '../../navigation';
 export class NavGroupComponent implements OnInit {
   // public props
   @Input() item!: NavigationItem;
-
   // constructor
   constructor(
     private location: Location,
@@ -22,6 +21,8 @@ export class NavGroupComponent implements OnInit {
 
   // life cycle event
   ngOnInit() {
+  console.log(this.item)
+
     // at reload time active and trigger link
     let current_url = this.location.path();
     const baseHref = this.locationStrategy.getBaseHref();

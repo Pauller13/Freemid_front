@@ -7,6 +7,13 @@
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
+  border: 1px solid #ccc; /* Bordure pour visibilité */
+  transition: border-color 0.3s; /* Transition pour l'effet de focus */
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Changement de couleur lors du focus */
+  outline: none; /* Supprimer l'outline par défaut */
 }
 
 .offer-count {
@@ -45,8 +52,42 @@
 }
 
 .card-footer {
-  text-align: right;
+  display: flex; /* Alignement avec flex */
+  justify-content: flex-end; /* Aligner les boutons à droite */
   margin-top: 10px;
+  gap: 10px; /* Espacement entre les boutons */
+}
+
+.btn {
+  padding: 6px 12px; /* Espacement interne réduit pour un bouton plus petit */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem; /* Taille de police réduite */
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .button-details {
@@ -54,16 +95,39 @@
   color: white;
   border: none;
   border-radius: 12px; /* Bords arrondis */
-  padding: 10px 20px; /* Espacement interne */
+  padding: 8px 16px; /* Espacement interne pour un bouton agréable */
   cursor: pointer;
   transition: background-color 0.3s;
-
-  &:hover {
-    background-color: darkblue; /* Couleur au survol */
-  }
-
-  &:focus {
-    outline: none; /* Supprimer l'outline au focus */
-  }
 }
 
+.button-details:hover {
+  background-color: darkblue; /* Couleur au survol */
+}
+
+.button-details:focus {
+  outline: none; /* Supprimer l'outline au focus */
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-pagination {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.btn-pagination:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination-info {
+  margin: 0 10px;
+}
