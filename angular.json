@@ -36,17 +36,10 @@
               "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/assets/vendors/bootstrap/bootstrap.min.css",
-              "src/assets/vendors/fontawesome/css/all.min.css",
-              "src/assets/vendors/themify-icons/themify-icons.css",
-              "src/assets/vendors/linericon/style.css",
-              "src/assets/css/style.css"
+                "src/assets/css/style.css"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",
-              "src/assets/vendors/jquery/jquery-3.2.1.min.js",
-              "src/assets/vendors/bootstrap/bootstrap.bundle.min.js",
-              "src/assets/vendors/owl-carousel/owl.carousel.min.js",
               "src/assets/js/jquery.ajaxchimp.min.js",
               "src/assets/js/mail-script.js",
               "src/assets/js/main.js"

@@ -6,6 +6,11 @@ import { Router } from '@angular/router';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { ProposalService } from 'src/app/core/services/proposal/proposal.service';
 import { Proposal } from 'src/app/domains/interfaces/proposal/proposal.interface';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 
 @Component({
   standalone: true,
@@ -13,8 +18,13 @@ import { Proposal } from 'src/app/domains/interfaces/proposal/proposal.interface
   templateUrl: './offer-list.component.html',
   styleUrls: ['./offer-list.component.scss'],
   imports: [
-      CommonModule
+      CommonModule,
+      ToastModule,
+      ConfirmPopupModule,
+      ButtonModule
   ],
+  providers: [MessageService, ConfirmationService],
+
 
 })
 export class OfferListComponent implements OnInit {
@@ -32,9 +42,41 @@ export class OfferListComponent implements OnInit {
     private offerService: OfferService,
     private router: Router,
     private baseService: BaseService,
-    private proposalService: ProposalService) {
+    private proposalService: ProposalService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
+  
+  confirmButton(event: Event, offerId?: number): void {
+    if (offerId === undefined) {
+      this.messageService.add({ severity: 'error', summary: 'Erreur', detail: 'ID de l\'offre non valide.' });
+      return;
+    }
+  
+    const target = event.target as EventTarget;
+    this.confirmationService.confirm({
+      target: target,
+      message: 'Êtes-vous sûr de vouloir supprimer cette offre ?',
+      accept: () => {
+        this.onAccept(offerId);
+      },
+      reject: () => {
+        this.onReject();
+      },
+      header: 'Confirmation',
+    });
   }
+
+  private onAccept(offerId: number): void {
+    this.deleteOffer(offerId);
+    this.messageService.add({ severity: 'success', summary: 'Sauvegarde', detail: 'Elève supprimé avec succès' });
+  }
+
+  private onReject(): void {
+    this.messageService.add({ severity: 'error', summary: 'Annulation', detail: 'Suppression annulée' });
+  }
+
   ngOnInit(): void {
     this.loadOffers();
   }
@@ -80,9 +122,7 @@ export class OfferListComponent implements OnInit {
 
 
   // viewDetails(offerId?: number) {
-  //   // Logique pour afficher les détails de l'offre
   //   console.log(`Voir les détails de l'offre ID: ${offerId}`);
-/******  ccf3a4ef-5393-4f7a-9b30-c630937587f4  *******/
   // }
 
   updateOffer(offerId?: number): void {
@@ -93,15 +133,15 @@ export class OfferListComponent implements OnInit {
     }
   }
   deleteOffer(offerId?: number): void {
-    const confirmation = confirm('Etes-vous sur de vouloir supprimer cette offre ?');
     if (offerId) {
-      if (confirmation) {
-        this.offerService.deleteOffer(offerId).subscribe(() => {
-          this.loadOffers();
-        });
-      }
+      this.offerService.deleteOffer(offerId).subscribe(() => {
+        this.loadOffers();
+      })
     }
-  }
+      
+    }
+    
+  
   updatePaginatedOffers(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -122,4 +162,6 @@ export class OfferListComponent implements OnInit {
   }
 
   }
+
+ 
 }

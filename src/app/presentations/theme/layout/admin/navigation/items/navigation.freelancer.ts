@@ -1,3 +1,4 @@
+
 import {NavigationItem} from "../navigation";
 
 export const NavigationItems2: NavigationItem[] = [
@@ -14,13 +15,42 @@ export const NavigationItems2: NavigationItem[] = [
         url: '/dashboard-freelance',
         icon: 'feather icon-home'
       },
-      // {
-      //   id: 'account-management',
-      //   title: 'Gestion du compte',
-      //   type: 'item',
-      //   url: '/account-management',
-      //   icon: 'feather icon-user'
-      // },
+      {
+        id: 'account-management',
+        title: 'Gestion du compte',
+        type: 'item',
+        url: '/account-management',
+        icon: 'feather icon-user'
+      },
+      {
+        id: 'offer',
+        title: 'Voir les offres',
+        type: 'item',
+        url: '/offer',
+        icon: 'feather icon-tag'
+      },
+      {
+      id: 'proposal',
+      title: 'Projet',
+      type: 'collapse',
+      icon: 'feather icon-tag',
+      children: [
+        {
+          id: 'proposal-list',
+          title: 'Propositions',
+          type: 'item',
+          url: '/new-offer',
+          icon: 'feather icon-plus'
+        },
+        {
+          id: 'project',
+          title: 'Liste des project',
+          type: 'item',
+          url: '/offers-list',
+          icon: 'feather icon-list'
+        }
+      ]
+      },
       // {
       // id: 'offer',
       // title: 'Offres',

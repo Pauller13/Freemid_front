@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthService } from '../services/user/auth.service';
-import { Observable, of } from 'rxjs';
-import { tap, catchError, switchMap } from 'rxjs/operators';
+import { Observable, of, Subscription } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+export class AuthGuard implements CanActivate, OnDestroy {
+  private refreshInterval: any;
+  private intervalTime = 1 * 60 * 1000;
+
+  constructor(private router: Router, private authService: AuthService) {
+    this.startTokenCheck();
+  }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
     const token = localStorage.getItem('jwt_token');
@@ -57,6 +62,30 @@ export class AuthGuard implements CanActivate {
     );
   }
 
+  private startTokenCheck() {
+    this.refreshInterval = setInterval(() => {
+      const token = localStorage.getItem('jwt_token');
+      if (token) {
+        this.authService.verifyToken(token).subscribe({
+          next: () => {
+            console.log('Token is valid');
+          },
+          error: () => {
+            console.log('Token is invalid, attempting to refresh');
+            this.authService.refreshToken().subscribe({
+              next: () => console.log('Token refreshed successfully'),
+              error: () => {
+                console.log('Token refresh failed');
+                this.authService.logout();
+                this.router.navigate(['/auth/signin']);
+              }
+            });
+          }
+        });
+      }
+    }, this.intervalTime);
+  }
+
   private handleRoleRedirect(role: string | null) {
     if (role === 'freelancer') {
       console.log('Redirection vers le tableau de bord freelancer');
@@ -67,6 +96,12 @@ export class AuthGuard implements CanActivate {
     } else {
       console.log('Redirection vers la page de connexion');
       this.router.navigate(['/auth/signin']); 
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
     }
   }
 }
