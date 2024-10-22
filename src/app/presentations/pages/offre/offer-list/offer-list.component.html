@@ -28,9 +28,7 @@
         <button (click)="updateOffer(offer.id)" class="btn btn-secondary">
           Modifier
         </button>
-        <button (click)="deleteOffer(offer.id)" class="btn btn-danger">
-          Supprimer
-        </button>
+        <button type="button" (click)="confirmButton($event, offer.id)">Supprimer l'Offre</button>
       </div>
 
 
@@ -43,3 +41,5 @@
       <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
     </div>
   </div>
+  <p-toast position="top-right"></p-toast>
+  <p-confirmPopup></p-confirmPopup>
