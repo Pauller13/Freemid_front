@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Offre</title>
+    <link rel="stylesheet" href="details-offer.component.scss"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="offer-title">Développement Web</h1>
+
+        <!-- Informations de l'offre -->
+        <div class="offer-details">
+            <img src="path/to/image1.jpg" alt="Développement Web" class="offer-image" />
+            <p class="offer-description">Création d'un site web responsive et optimisé pour le SEO.</p>
+            <div class="offer-info">
+                <span class="offer-price">1.500.000 FCFA</span>
+                <span class="offer-date">Publié le : 10/10/2024</span>
+            </div>
+
+            <h3>Informations Complémentaires</h3>
+            <ul class="offer-features">
+                <li><strong>Durée :</strong> 3 mois</li>
+                <li><strong>Technologies Utilisées :</strong> HTML, CSS, JavaScript, PHP</li>
+                <li><strong>Statut :</strong> En cours</li>
+                <li><strong>Budget :</strong> 1.500.000 FCFA</li>
+                <li><strong>Date Limite :</strong> 31/12/2024</li>
+            </ul>
+
+            <h3>Compétences Requises</h3>
+            <ul class="required-skills">
+                <li><strong>Compétence 1 :</strong> HTML - Niveau : Intermédiaire</li>
+                <li><strong>Compétence 2 :</strong> CSS - Niveau : Intermédiaire</li>
+                <li><strong>Compétence 3 :</strong> JavaScript - Niveau : Expert</li>
+                <li><strong>Compétence 4 :</strong> PHP - Niveau : Intermédiaire</li>
+            </ul>
+
+            <button class="btn btn-apply">Postuler</button>
+        </div>
+
+        <button class="btn btn-back" onclick="window.history.back();">Retour au Catalogue</button>
+    </div>
+
+    <script>
+      // JavaScript pour gérer la navigation
+      let currentPage = 1;
+      function goToPage(page) {
+        currentPage = page;
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.style.display = section.dataset.page == page ? 'block' : 'none';
+        });
+      }
+    </script>
+</body>
+</html>

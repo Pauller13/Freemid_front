@@ -1,4 +1,4 @@
-import {NavigationItem} from "../navigation";
+import { NavigationItem } from '../navigation';
 
 export const NavigationItems: NavigationItem[] = [
   {
@@ -22,39 +22,39 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'feather icon-user'
       },
       {
-      id: 'offer',
-      title: 'Offres',
-      type: 'collapse',
-      icon: 'feather icon-tag',
-      children: [
-        {
-          id: 'new-offer',
-          title: 'Nouvelle Offre',
-          type: 'item',
-          url: '/new-offer',
-          icon: 'feather icon-plus'
-        },
-        {
-          id: 'list-offer',
-          title: 'Liste des Offres',
-          type: 'item',
-          url: '/offers-list',
-          icon: 'feather icon-list'
-        }
-      ]
+        id: 'offer',
+        title: 'Offres',
+        type: 'collapse',
+        icon: 'feather icon-briefcase',
+        children: [
+          {
+            id: 'new-offer',
+            title: 'Nouvelle Offre',
+            type: 'item',
+            url: '/new-offer',
+            icon: 'feather icon-plus-square'
+          },
+          {
+            id: 'list-offer',
+            title: 'Liste des Offres',
+            type: 'item',
+            url: '/offers-list',
+            icon: 'feather icon-list'
+          }
+        ]
       },
       {
         id: 'freelancer',
         title: 'Freelancers',
         type: 'collapse',
-        icon: 'feather icon-user',
+        icon: 'feather icon-users',
         children: [
           {
-            id: 'collabateurs',
-            title: 'Mes collabateurs',
+            id: 'collaborators',
+            title: 'Mes collaborateurs',
             type: 'item',
             url: '/user-collaborator',
-            icon: 'feather icon-user'
+            icon: 'feather icon-user-check'
           },
           {
             id: 'freelancer-list',
@@ -64,8 +64,7 @@ export const NavigationItems: NavigationItem[] = [
             icon: 'feather icon-user-plus'
           }
         ]
-      },
+      }
     ]
-  },
-
+  }
 ];
