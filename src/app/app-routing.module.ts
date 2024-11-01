@@ -29,57 +29,122 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () => import('./presentations/pages/dashboard/dash-analytics.component'),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+        title: 'Tableau de Bord Client',
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
       {
         path: 'account-management',
-        loadComponent: () => import('./presentations/pages/account-management/account-management.component').then(m => m.AccountManagementComponent),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+        loadComponent: () =>
+          import('./presentations/pages/account-management/account-management.component').then((m) => m.AccountManagementComponent),
+        title: 'Gestion du  Compte Client',
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
-      { path: 'new-offer',
-        loadComponent: () => import('./presentations/pages/offre/new-offer/new-offer.component').then(m => m.NewOfferComponent),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+      {
+        path: 'new-offer',
+        loadComponent: () => import('./presentations/pages/offre/new-offer/new-offer.component').then((m) => m.NewOfferComponent),
+        title: "Création d'une Nouvelle Offre ",
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
-      { path: 'offers-list',
-        loadComponent: () => import('./presentations/pages/offre/offer-list/offer-list.component').then(m => m.OfferListComponent),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+      {
+        path: 'offers-list',
+        loadComponent: () => import('./presentations/pages/offre/offer-list/offer-list.component').then((m) => m.OfferListComponent),
+        title: "Liste des Offres",
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
       {
         path: 'offer-edit',
-        loadComponent: () => import('./presentations/pages/offre/offer-edit/offer-edit.component').then(m => m.OfferEditComponent),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+        loadComponent: () => import('./presentations/pages/offre/offer-edit/offer-edit.component').then((m) => m.OfferEditComponent),
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
       {
         path: 'offer-proposals/:id',
-        loadComponent: () => import('./presentations/pages/offre/detail-offer/detail-offer.component').then(m => m.DetailOfferComponent),
-        canActivate: [AuthGuard],data: { roles: ['client'] }
+        loadComponent: () => import('./presentations/pages/offre/detail-offer/detail-offer.component').then((m) => m.DetailOfferComponent),
+        title: "Proposition d'Offre",
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
       {
-      path: 'freelancer-list',
-      loadComponent: () => import('./presentations/pages/freelancer-list/freelancer-list.component').then(m => m.FreelancerListComponent),
-      canActivate: [AuthGuard],data: { roles: ['client'] }
-    },
-    {
-    path: 'my-profile',
-      loadComponent: () => import('./presentations/pages/client-profile/client-profile.component').then(m => m.ClientProfileComponent),
-      canActivate: [AuthGuard],data: { roles: ['client'] }
-    },
-    {
-    path: 'freelancer-profile/:id',
-      loadComponent: () => import('./presentations/pages/freelancer-profile/freelancer-profile.component').then(m => m.FreelancerProfileComponent),
-      canActivate: [AuthGuard],data: { roles: ['client'] }
-    },
-    {
-      path: 'dashboard-freelance',
-        loadComponent: () => import('./presentations/pages/dashboard-freelance/dashboard-freelance.component').then(m => m.DashboardFreelanceComponent),
-        canActivate: [AuthGuard],data: { roles: ['freelancer'] }
+        path: 'my-profile',
+        loadComponent: () => import('./presentations/pages/client-profile/client-profile.component').then((m) => m.ClientProfileComponent),
+        title: "Mon Profile",
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
       },
       {
         path: 'user-collaborator',
-        loadComponent: () => import('./presentations/pages/client-collaborator/client-collaborator.component').then(m => m.ClientCollaboratorComponent),
-        canActivate: [AuthGuard], data: {roles: ['client']}
+        loadComponent: () =>
+          import('./presentations/pages/client-collaborator/client-collaborator.component').then((m) => m.ClientCollaboratorComponent),
+        canActivate: [AuthGuard],
+        data: { roles: ['client'] }
+      },
+      {
+        path: 'dashboard-freelance',
+        loadComponent: () => import('./presentations/pages/dashboard/dash-analytics.component'),
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      },
+      {
+        path: 'compte-freelance',
+        loadComponent: () =>
+          import('./presentations/pages/freelancer/account-management-freelancer/account-management-freelancer.component').then(
+            (m) => m.AccountManagementFreelancerComponent
+          ),
+        title: 'compte freelance',
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
       },
 
+      {
+        path: 'liste-offres',
+        loadComponent: () => import('./presentations/pages/freelancer/list-offer/list-offer.component').then((m) => m.ListOfferComponent),
+        title: 'Liste des offres',
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      },
+      {
+        path: 'details-offres',
+        loadComponent: () =>
+          import('./presentations/pages/freelancer/details-offer/details-offer.component').then((m) => m.DetailsOfferComponent),
+        title: "Détails de l'Offre",
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      },
+      {
+        path: 'propositions-offres',
+        loadComponent: () =>
+          import('./presentations/pages/freelancer/propositional-offer/propositional-offer.component').then(
+            (m) => m.PropositionalOfferComponent
+          ),
+        title: "Propostions d'offres",
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      },
+
+      {
+        path: 'liste-projets',
+        loadComponent: () =>
+          import('./presentations/pages/freelancer/list-projects/list-projects.component').then(
+            (m) => m.ListProjectsComponent
+          ),
+        title: "Liste des projets",
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      },
+      {
+        path: 'tableau de bord',
+        loadComponent: () =>
+          import('./presentations/pages/freelancer/dashboard-freelance/dashboard-freelance.component').then(
+            (m) => m.DashboardFreelanceComponent
+          ),
+        title: 'Tableau de Bord Freelance',
+        canActivate: [AuthGuard],
+        data: { roles: ['freelancer'] }
+      }
     ]
   },
   {
@@ -96,23 +161,22 @@ const routes: Routes = [
       },
       {
         path: 'role',
-        loadComponent: () => import ('./presentations/pages/role/role.component').then(m =>m.RoleComponent)
+        loadComponent: () => import('./presentations/pages/role/role.component').then((m) => m.RoleComponent)
       },
       {
-        path:'freemid',
+        path: 'freemid',
         component: FreemidComponent,
         children: [
           { path: '', component: LandingPageComponent },
           { path: 'feature', component: FeatureComponent },
           { path: 'pricing', component: PricingComponent },
           { path: 'about', component: AboutUsComponent },
-          { path: 'contact', component: ContactComponent },
-
+          { path: 'contact', component: ContactComponent }
         ]
       }
     ]
   },
-  { path: '**', component: NotFoundComponent } ,
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

@@ -29,6 +29,7 @@ import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './core/interceptors/auth.jwt.interceptor';
 import { ToastModule } from 'primeng/toast';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     HttpClientModule,
     RouterModule,
     ToastModule,
-    CKEditorModule
+    CKEditorModule,
+    NgApexchartsModule,
 ],
   providers: [
   {

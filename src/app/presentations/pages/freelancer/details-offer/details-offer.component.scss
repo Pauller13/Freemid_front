@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.offer-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.offer-description {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin: 15px 0;
+}
+
+.offer-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.offer-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.offer-date {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.offer-features {
+    list-style: none;
+    padding: 0;
+}
+
+.offer-features li {
+    padding: 5px 0;
+}
+
+.btn {
+    padding: 10px 15px;
+    margin: 20px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-back {
+    background-color: #6c757d; 
+}
+
+.btn-back:hover {
+    background-color: #5a6268; 
+}
