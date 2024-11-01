@@ -4,8 +4,12 @@ import { Location, LocationStrategy } from '@angular/common';
 
 // project import
 import { NavigationItem } from '../../navigation';
+import { NavCollapseComponent } from '../nav-collapse/nav-collapse.component';
+import { NavItemComponent } from '../nav-item/nav-item.component';
 
 @Component({
+  // standalone: true,
+  // imports: [NavItemComponent, NavCollapseComponent],
   selector: 'app-nav-group',
   templateUrl: './nav-group.component.html',
   styleUrls: ['./nav-group.component.scss']

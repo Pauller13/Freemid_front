@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OfferService } from 'src/app/core/services/offer/offer.service';
+import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
 
 @Component({
   selector: 'app-list-offer',
@@ -8,28 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './list-offer.component.scss'
 })
 export class ListOfferComponent implements OnInit {
-  offers = [
-    {
-      title: 'Développement Web',
-      description: "Création d'un site web responsive et optimisé pour le SEO.",
-      price: '1.500.000 fcfa',
-      date: '10/10/2024',
-      image: 'path/to/image1.jpg',
-      status: 'En cours'
-    },
-    {
-      title: 'Rédaction de Contenu',
-      description: "Rédaction d'articles SEO et de contenus marketing.",
-      price: '600.000 fcfa',
-      date: '12/10/2024',
-      image: 'path/to/image2.jpg',
-      status: 'Terminé'
-    }
-    // Ajoutez d'autres offres ici
-  ];
-  
+  offers!: Offer[];
 
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(
+    private offerService: OfferService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadOffers();
+  }
+
+  loadOffers(): void {
+    this.offerService.getmyOffers().subscribe(offers => {
+      this.offers = offers;
+      console.log(this.offers);
+    });
+  }
 }

@@ -1,15 +1,26 @@
 // Angular Import
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { SharedModule } from './presentations/theme/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [
+    RouterModule,
+    ToastModule,
+    SharedModule,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MessageService]
+  providers: [
+    MessageService
+  ],
 })
 export class AppComponent implements OnInit {
+
   // constructor
   constructor(private router: Router) {}
 

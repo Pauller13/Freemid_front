@@ -35,13 +35,12 @@ import { NgbDropdownModule, NgbNavModule, NgbModule } from '@ng-bootstrap/ng-boo
     ReactiveFormsModule,
     CardComponent,
     BreadcrumbComponent,
-    DataFilterPipe,
     SpinnerComponent,
     NgbModule,
     NgbDropdownModule,
     NgbNavModule,
     NgScrollbarModule
   ],
-  declarations: [DataFilterPipe, SpinnerComponent]
+  declarations: [SpinnerComponent]
 })
 export class SharedModule {}

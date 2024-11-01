@@ -20,9 +20,7 @@ export class UserService {
   constructor(private http: HttpClient, private base: BaseService) { }
 
   register(user: User): Observable<User> {
-    console.log(this.apiUrl)
-    const headers: HttpHeaders = this.base.getHeaders();
-    return this.http.post<any>(this.apiUrl, user, { headers });
+    return this.http.post<any>(this.apiUrl, user);
   }
 
 

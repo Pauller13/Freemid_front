@@ -1,19 +1,24 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Location, LocationStrategy } from '@angular/common';
+import { CommonModule, Location, LocationStrategy } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { NavigationItem } from '../navigation';
 import {NavigationItems2} from "../items/navigation.freelancer";
 import {NavigationItems} from "../items/navigation.client";
+import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
+import { NavItemComponent } from './nav-item/nav-item.component';
+import { NavCollapseComponent } from './nav-collapse/nav-collapse.component';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { NavModule } from 'src/app/presentations/theme/shared/nav.module';
 
 @Component({
+  // standalone: true,
+  // imports: [NavModule],
   selector: 'app-nav-content',
   templateUrl: './nav-content.component.html',
   styleUrls: ['./nav-content.component.scss']
 })
 export class NavContentComponent implements OnInit {
-  // Version
-  title = 'Demo application for version numbering';
-  currentApplicationVersion = environment.appVersion;
+
 
   // Public props
   navigations: NavigationItem[] = []; // Initialiser comme un tableau vide

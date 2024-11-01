@@ -4,9 +4,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { AuthService } from 'src/app/core/services/user/auth.service';
 // bootstrap
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ChatUserListComponent } from './chat-user-list/chat-user-list.component';
+import { ChatMsgComponent } from './chat-msg/chat-msg.component';
+import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [RouterModule, ChatUserListComponent, ChatMsgComponent, SharedModule],
   selector: 'app-nav-right',
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss'],
@@ -48,7 +53,7 @@ export class NavRightComponent implements OnInit{
     this.chatMessage = !this.chatMessage;
   }
   onLogout() {
-    this.authService.logout(); 
-    this.router.navigate(['/auth/signin']); 
+    this.authService.logout();
+    this.router.navigate(['/auth/signin']);
 }
 }

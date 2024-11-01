@@ -1,9 +1,16 @@
 // Angular Import
 import { Component, HostListener } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { SharedModule } from '../../shared/shared.module';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-admin',
+  imports: [ConfigurationComponent, NavigationComponent, SharedModule, NavBarComponent, RouterModule],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })

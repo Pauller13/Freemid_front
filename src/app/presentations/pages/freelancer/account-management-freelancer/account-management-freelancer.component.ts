@@ -37,7 +37,6 @@ export class AccountManagementFreelancerComponent implements OnInit {
     certificates: [],
     portfolio : [],
     rate_card: {},
-    company_description: ''
   };
   currentPassword: string = '';
   newPassword: string = '';

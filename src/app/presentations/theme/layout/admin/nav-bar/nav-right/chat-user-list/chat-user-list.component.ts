@@ -3,8 +3,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 // project import
 import { FriendsList } from 'src/app/data/fack-db/friends-list';
+import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
+import { FriendComponent } from './friend/friend.component';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule, FriendComponent],
   selector: 'app-chat-user-list',
   templateUrl: './chat-user-list.component.html',
   styleUrls: ['./chat-user-list.component.scss']

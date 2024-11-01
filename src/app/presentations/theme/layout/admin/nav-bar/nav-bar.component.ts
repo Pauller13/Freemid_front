@@ -1,7 +1,13 @@
 // Angular Import
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../../shared/shared.module';
+import { NavLeftComponent } from './nav-left/nav-left.component';
+import { NavRightComponent } from './nav-right/nav-right.component';
 
 @Component({
+  standalone: true,
+  imports: [RouterModule, SharedModule, NavLeftComponent, NavRightComponent],
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']

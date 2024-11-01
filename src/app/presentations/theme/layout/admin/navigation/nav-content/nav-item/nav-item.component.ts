@@ -3,8 +3,12 @@ import { Component, Input } from '@angular/core';
 
 // project import
 import { NavigationItem } from '../../navigation';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  // standalone: true,
+  // imports: [RouterModule, CommonModule],
   selector: 'app-nav-item',
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss']

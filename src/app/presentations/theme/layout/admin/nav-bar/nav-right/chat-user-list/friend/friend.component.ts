@@ -1,5 +1,6 @@
 // Angular Import
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
 
 interface friendsList {
   id: number;
@@ -11,6 +12,8 @@ interface friendsList {
 }
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-friend',
   templateUrl: './friend.component.html',
   styleUrls: ['./friend.component.scss']

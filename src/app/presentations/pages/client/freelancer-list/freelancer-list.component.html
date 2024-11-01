@@ -1,0 +1,26 @@
+<div class="freelancer-list">
+  <input
+    type="text"
+    placeholder="Rechercher un freelancer..."
+    (input)="handleSearchChange($event)"
+    class="search-input"
+  />
+  <div *ngIf="isSearching">Recherche en cours...</div>
+  <div class="freelancer-cards">
+    <div class="freelancer-card" *ngFor="let freelancer of filteredFreelancers">
+      <div class="card-header">
+        <img [src]="freelancer.user.photo || 'default-avatar.png'" alt="Photo de {{ freelancer.user.first_name }}" class="freelancer-photo" />
+        <h2>{{ freelancer.user.first_name }} {{freelancer.id}} {{ freelancer.user.last_name }}</h2>
+        <p><strong>Compétences:</strong> {{ freelancer.skills.slice(0, 3).join(', ') }}</p>
+      </div>
+      <div class="card-footer">
+        <button (click)="viewProfile(freelancer.id)" class="button-details">
+          Voir le profil
+        </button>
+        <button (click)="sendMessage(freelancer.id)" class="button-message">
+          Envoyer un message
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

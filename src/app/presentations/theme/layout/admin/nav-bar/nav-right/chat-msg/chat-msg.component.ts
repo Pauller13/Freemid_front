@@ -4,8 +4,11 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, 
 // project import
 import { FriendsList } from 'src/app/data/fack-db/friends-list';
 import { UserChat } from 'src/app/data/fack-db/user-chat';
+import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-chat-msg',
   templateUrl: './chat-msg.component.html',
   styleUrls: ['./chat-msg.component.scss']

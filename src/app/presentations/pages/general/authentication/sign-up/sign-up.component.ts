@@ -34,14 +34,14 @@ export default class SignUpComponent implements OnInit {
     if (token){
       this.router.navigate(['/dashboard']);
     }
-    this.userRole = localStorage.getItem('userRole'); // Récupération du rôle
+    this.userRole = localStorage.getItem('userRole');
     if (!this.userRole) {
       this.router.navigate(['/role']);
     }
   }
   submit() {
     console.log(this.formUser.value);
-    
+
     if (this.validateForm()) {
       this.formUser.patchValue({ role: this.userRole });
       this.userService.register(this.formUser.value).subscribe(

@@ -6,12 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class BaseService {
   private id!: string;
-  
+
   constructor() { }
 
-  getHeaders() {
-    return new HttpHeaders({ 'Content-Type': 'application/json' });
-  }
+
   setId(id: string) {
     this.id = id;
   }

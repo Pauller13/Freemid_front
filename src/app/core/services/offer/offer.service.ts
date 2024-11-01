@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class OfferService {
   getOffers(): Observable<Offer[]> {
     return this.http.get<{ client_offers: Offer[] }>(this.apiUrl).pipe(
       map(response=> response.client_offers))
-  
+
   }
 
   getOfferById(id: number): Observable<Offer> {
@@ -31,5 +32,10 @@ export class OfferService {
 
   deleteOffer(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}${id}/`);
+  }
+
+  getmyOffers(): Observable<Offer[]> {
+    return this.http.get<{skill_offers: Offer[]}>(`${this.apiUrl}list-offers/`).pipe(
+      map(response=> response.skill_offers))
   }
 }
