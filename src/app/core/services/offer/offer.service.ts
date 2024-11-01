@@ -7,7 +7,7 @@ import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
   providedIn: 'root'
 })
 export class OfferService {
-  private apiUrl = 'http://localhost:8000/offers/'; // Remplace par l'URL de ton API
+  private apiUrl = 'http://localhost:8000/offers/'; 
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,10 @@ export class OfferService {
     return this.http.get<{ client_offers: Offer[] }>(this.apiUrl).pipe(
       map(response=> response.client_offers))
   
+  }
+
+  getmyOffers(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${this.apiUrl}list-offers/`);
   }
 
   getOfferById(id: number): Observable<Offer> {

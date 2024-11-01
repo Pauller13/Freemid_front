@@ -9,9 +9,9 @@ export class BaseService {
   
   constructor() { }
 
-  getHeaders() {
-    return new HttpHeaders({ 'Content-Type': 'application/json' });
-  }
+  // getHeaders() {
+  //   return new HttpHeaders({ 'Content-Type': 'application/json' });
+  // }
   setId(id: string) {
     this.id = id;
   }

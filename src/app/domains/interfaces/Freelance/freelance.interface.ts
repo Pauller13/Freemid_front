@@ -6,6 +6,6 @@ export interface Freelancer{
     biography?: string;  
     skills: string[];  
     certificates: string[];  
-    portfolio: object[];  
+    portfolio: string[];  
     rate_card: { [key: string]: any };
   }

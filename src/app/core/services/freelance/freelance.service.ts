@@ -16,4 +16,10 @@ import { Freelancer } from "src/app/domains/interfaces/Freelance/freelance.inter
     getFreelancerById(id: number): Observable<Freelancer> {
       return this.http.get<Freelancer>(`${this.apiUrl}${id}`);
     }
+    getmyProfile(): Observable<Freelancer> {
+      return this.http.get<Freelancer>(`${this.apiUrl}/my-profile/`);
+    }
+    updateClientProfile(freelancer: Freelancer): Observable<Freelancer> {
+      return this.http.patch<Freelancer>(`${this.apiUrl}/update-profile/`, freelancer); 
+    }
   }

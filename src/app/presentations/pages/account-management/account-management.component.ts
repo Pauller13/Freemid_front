@@ -8,6 +8,7 @@ import { ClientService } from 'src/app/core/services/client/client.service';
 import { User } from 'src/app/domains/interfaces/user/user.interface';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/core/services/user/auth.service';
 
 @Component({
   selector: 'app-account-management',
@@ -37,7 +38,7 @@ export class AccountManagementComponent implements OnInit {
   confirmPassword: string = '';
   passwordChangeError: string | null = null;
 
-  constructor(private clientService: ClientService, private messageService: MessageService) { }
+  constructor(private clientService: ClientService, private messageService: MessageService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.clientService.getmyProfile().subscribe((data: Client) => {
@@ -79,14 +80,11 @@ export class AccountManagementComponent implements OnInit {
  
   onSubmit() {
     this.client.user.photo = this.user.photo; 
-    console.log('User Data Photo:', this.client.user.photo);
-    console.log('Client Data Submitted:', this.client);
-
-    
     this.clientService.updateClientProfile(this.client).subscribe(response => {
+      this.authService.refreshToken();
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile updated successfully' });
     }, error => {
-      console.error('Error updating profile:', error);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update profile' });
     });
   }
   
@@ -105,8 +103,7 @@ changePassword() {
   this.clientService.changePassword(passwordData).subscribe(
     (response: any) => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Password changed successfully' });
-      // console.log('Password changed successfully:', response);
-      this.passwordChangeError = null; // Clear any previous error
+      this.passwordChangeError = null; 
       this.currentPassword = '';
       this.newPassword = '';
       this.confirmPassword = '';

@@ -41,7 +41,7 @@ export default class SignUpComponent implements OnInit {
   }
   submit() {
     console.log(this.formUser.value);
-    
+
     if (this.validateForm()) {
       this.formUser.patchValue({ role: this.userRole });
       this.userService.register(this.formUser.value).subscribe(

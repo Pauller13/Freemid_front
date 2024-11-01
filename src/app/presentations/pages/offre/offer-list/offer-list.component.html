@@ -19,8 +19,11 @@
         <p><strong>Description:</strong> {{ offer.description }}</p>
         <p><strong>Budget:</strong> {{ offer.budget }} €</p>
         <p><strong>Date limite:</strong> {{ offer.deadline | date: 'dd/MM/yyyy' }}</p>
-        <p><strong>Compétences requises:</strong> {{offer.required_skills_name}}</p>
-      </div>
+        <p><strong>Compétences requises:</strong>
+          <span *ngFor="let requiredSkill of offer.required_skills; let last = last">
+              {{ requiredSkill.skill.name }}<span *ngIf="!last">, </span>
+          </span>
+      </p>      </div>
       <div class="card-footer">
         <button (click)="showProposals(offer.id)" class="btn btn-primary">
           Voir les propositions
@@ -28,18 +31,12 @@
         <button (click)="updateOffer(offer.id)" class="btn btn-secondary">
           Modifier
         </button>
-        <button type="button" (click)="confirmButton($event, offer.id)">Supprimer l'Offre</button>
+        <button type="button" class="btn btn-danger" (click)="confirmButton($event, offer.id)">Supprimer l'Offre</button>
       </div>
 
 
     </div>
-    <div *ngIf="offers.length > 6" class="pagination-controls">
-      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
-
-      <span>Page {{ currentPage }} sur {{ totalPages }}</span>
-
-      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
-    </div>
+   
   </div>
   <p-toast position="top-right"></p-toast>
   <p-confirmPopup></p-confirmPopup>

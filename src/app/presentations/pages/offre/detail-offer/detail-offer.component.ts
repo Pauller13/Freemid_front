@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OfferService } from 'src/app/core/services/offer/offer.service';
 import { ProposalService } from 'src/app/core/services/proposal/proposal.service';
 import { Offer } from 'src/app/domains/interfaces/offer/offer.interface';
@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from 'src/app/presentations/theme/shared/shared.module';
 import { log } from 'console';
 import { FreelancerService } from 'src/app/core/services/freelance/freelance.service';
+import { BaseService } from 'src/app/core/services/base/base.service';
 @Component({
   selector: 'app-detail-offer',
   standalone: true,
@@ -18,10 +19,11 @@ import { FreelancerService } from 'src/app/core/services/freelance/freelance.ser
 })
 export class DetailOfferComponent implements OnInit {
 
+
   offer!: Offer;
   proposals: Proposal[] = [];
   filteredProposals: Proposal[] = [];
-  offerId: number=1;
+  offerId!: number;
   searchTerm: string = '';
   freelancerNames: { [key: number]: string } = {};
 
@@ -29,15 +31,16 @@ export class DetailOfferComponent implements OnInit {
     private route: ActivatedRoute,
     private offerService: OfferService,
     private proposalService: ProposalService,
-    private freelancerService: FreelancerService,
-  ) {}
+    private router: Router,
+    private baseService: BaseService
+  ) {
+    this.offerId = Number(this.baseService.getId());
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.offerId = +params['id']; 
+ 
       this.loadOfferDetails();
       this.loadProposals();
-    });
    
     
   }
@@ -71,6 +74,13 @@ export class DetailOfferComponent implements OnInit {
       proposal.freelancer.user.last_name.toLowerCase().includes(query) ||
       proposal.message.toLowerCase().includes(query)
     );
+  }
+
+  viewFreelancerProfile(freelancerId: Number) {
+    if (freelancerId) {
+      this.baseService.setId(freelancerId.toString());
+      this.router.navigate([`/freelancer-profile/`]);
+    }
   }
 
 }

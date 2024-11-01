@@ -16,4 +16,11 @@ export class ProposalService {
   getProposals(offerId: number): Observable<Proposal[]> {
     return this.http.get<Proposal[]>(`${this.apiUrl}${offerId}/get-proposals`); // Adjust URL according to your API
   }
+  postProposal(proposal: Proposal): Observable<Proposal> {
+    return this.http.post<Proposal>(`${this.apiUrl}`, proposal);
+  }
+
+  getMyProposal(): Observable<Proposal[]> {
+    return this.http.get<Proposal[]>(`${this.apiUrl}`);
+  }
 }

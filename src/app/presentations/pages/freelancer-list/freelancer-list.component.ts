@@ -3,6 +3,7 @@ import { FreelancerService } from 'src/app/core/services/freelance/freelance.ser
 import { Freelancer } from 'src/app/domains/interfaces/Freelance/freelance.interface';
 import { SharedModule } from '../../theme/shared/shared.module';
 import { Router } from '@angular/router';
+import { BaseService } from 'src/app/core/services/base/base.service';
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ export class FreelancerListComponent implements OnInit {
   isSearching = false;
   searchTerm: string = '';
 
-  constructor(private freelancerService: FreelancerService, private router: Router) {}
+  constructor(private freelancerService: FreelancerService, private router: Router, private baseService: BaseService) {}
 
   ngOnInit(): void {
     this.loadFreelancers();
@@ -51,11 +52,14 @@ export class FreelancerListComponent implements OnInit {
     this.isSearching = false;
   }
   
-  viewProfile(freelancerId: number |undefined): void {
-    console.log('ID:', freelancerId);
+  viewProfile(freelancerId?: number): void {
     if (freelancerId) {
-      console.log(freelancerId);
-      this.router.navigate([`/freelancer-profile/${freelancerId}`]);
+      const freelancer = this.freelancers.find(f => f.id === freelancerId);
+      if (freelancer) {
+        const freelancerName = encodeURIComponent(`${freelancer.user.first_name} ${freelancer.user.last_name}`);
+        this.baseService.setId(freelancerId.toString());
+        this.router.navigate([`/freelancer-profile/${freelancerName}`]);
+      }
     }
   }
   sendMessage(arg0: number|undefined) {

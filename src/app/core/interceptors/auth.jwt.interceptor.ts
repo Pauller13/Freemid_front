@@ -9,7 +9,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
-    console.log(token)
     const excludedUrls = ['/auth/signin', '/auth/signup'];
     const shouldExclude = excludedUrls.some(url => req.url.includes(url));
 

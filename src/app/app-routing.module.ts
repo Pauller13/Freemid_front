@@ -50,7 +50,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],data: { roles: ['client'] }
       },
       {
-        path: 'offer-proposals/:id',
+        path: 'offer-proposals',
         loadComponent: () => import('./presentations/pages/offre/detail-offer/detail-offer.component').then(m => m.DetailOfferComponent),
         canActivate: [AuthGuard],data: { roles: ['client'] }
       },
@@ -61,11 +61,11 @@ const routes: Routes = [
     },
     {
     path: 'my-profile',
-      loadComponent: () => import('./presentations/pages/client-profile/client-profile.component').then(m => m.ClientProfileComponent),
+      loadComponent: () => import('./presentations/pages/my-profil-client/my-profil-client.component').then(m => m.MyProfilClientComponent),
       canActivate: [AuthGuard],data: { roles: ['client'] }
     },
     {
-    path: 'freelancer-profile/:id',
+    path: 'freelancer-profile/:name',
       loadComponent: () => import('./presentations/pages/freelancer-profile/freelancer-profile.component').then(m => m.FreelancerProfileComponent),
       canActivate: [AuthGuard],data: { roles: ['client'] }
     },

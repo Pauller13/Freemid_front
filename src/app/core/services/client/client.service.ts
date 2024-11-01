@@ -13,6 +13,9 @@ export class ClientService {
   getmyProfile(): Observable<Client> {
     return this.http.get<Client>(`${this.baseUrl}/my-profile/`);
   }
+  getClientById(id: number): Observable<Client> {
+    return this.http.get<Client>(`${this.baseUrl}/${id}/`);
+  }
 
   updateClientProfile(client: Client): Observable<Client> {
     return this.http.patch<Client>(`${this.baseUrl}/update-profile/`, client); 

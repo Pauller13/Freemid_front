@@ -9,5 +9,5 @@ export interface Offer {
     required_skills: OfferSkill[]; 
     budget: number; 
     deadline: string; 
-    required_skills_name?: string[];
+    // required_skills_name?: string[];
   }

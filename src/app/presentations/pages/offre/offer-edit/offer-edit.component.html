@@ -48,6 +48,7 @@
           <input type="number" class="form-control" id="levelRequired{{i}}" [(ngModel)]="skill.level_required" name="levelRequired{{i}}" placeholder="Niveau requis (ex: 1-débutant, 2-intermédiaire, 3-expert)" required />
           <button type="button" class="btn btn-danger" (click)="removeSkill(i)">Supprimer cette compétence</button>
         </div>
+        
       </div>
 
       <button type="button" class="btn btn-secondary" (click)="addSkill()">Ajouter une compétence</button>

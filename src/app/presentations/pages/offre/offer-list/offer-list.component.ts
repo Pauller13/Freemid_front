@@ -4,7 +4,6 @@ import { OfferService } from 'src/app/core/services/offer/offer.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/core/services/base/base.service';
-import { ProposalService } from 'src/app/core/services/proposal/proposal.service';
 import { Proposal } from 'src/app/domains/interfaces/proposal/proposal.interface';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -34,15 +33,12 @@ export class OfferListComponent implements OnInit {
   filteredOffers: Offer[] = [];
   isSearching = false;
   paginatedOffers: Offer[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 6;
   confirm : boolean = false;
 
   constructor(
     private offerService: OfferService,
     private router: Router,
     private baseService: BaseService,
-    private proposalService: ProposalService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -70,7 +66,7 @@ export class OfferListComponent implements OnInit {
 
   private onAccept(offerId: number): void {
     this.deleteOffer(offerId);
-    this.messageService.add({ severity: 'success', summary: 'Sauvegarde', detail: 'Elève supprimé avec succès' });
+    this.messageService.add({ severity: 'success', summary: 'Sauvegarde', detail: 'Offre supprimée avec succès' });
   }
 
   private onReject(): void {
@@ -83,14 +79,17 @@ export class OfferListComponent implements OnInit {
 
   loadOffers() {
     this.offerService.getOffers().subscribe((data: Offer[]) => {
-      console.log('Offres:', data);
-      this.offers = data;
-      this.filteredOffers = [...this.offers];
-    },err=>{
-      console.log(err);
-    })
-
-  }
+        console.log('Offres:', data);
+        
+      
+        
+        this.offers = data;
+        this.filteredOffers = [...this.offers];
+        
+    }, err => {
+        console.log(err);
+    });
+}
 
   handleSearchChange(event: Event) {
     const query = (event.target as HTMLInputElement).value.toLowerCase();
@@ -99,7 +98,7 @@ export class OfferListComponent implements OnInit {
     // Filtrer les offres
     this.filteredOffers = this.offers.filter(offer =>
       offer.title.toLowerCase().includes(query) ||
-
+      offer.required_skills.some(skill => skill.skill.name.toLowerCase().includes(query)) ||
       offer.description.toLowerCase().includes(query)
     );
 
@@ -142,23 +141,11 @@ export class OfferListComponent implements OnInit {
     }
     
   
-  updatePaginatedOffers(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedOffers = this.offers.slice(startIndex, endIndex);
-  }
 
-  changePage(page: number): void {
-    this.currentPage = page;
-    this.updatePaginatedOffers();
-  }
-
-  get totalPages(): number {
-    return Math.ceil(this.offers.length / this.itemsPerPage);
-  }
   showProposals(offerId?: number): void {
     if (offerId) {
-    this.router.navigate([`/offer-proposals/${offerId}`]);
+    this.baseService.setId(offerId.toString())
+    this.router.navigate([`/offer-proposals/`]);
   }
 
   }

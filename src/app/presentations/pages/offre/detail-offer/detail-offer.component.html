@@ -29,7 +29,7 @@
         <td>{{ proposal.proposed_deadline | date: 'dd/MM/yyyy' }}</td>
         <td>{{ proposal.message }}</td>
         <td>
-          <a [routerLink]="['/freelancer', proposal.freelancer.id]" class="view-profile-link">Voir le profil</a>
+          <a (click)="viewFreelancerProfile(proposal.freelancer.id)" class="view-profile-link">Voir le profil</a>
           <button class="accept-button">Accepter</button>
         </td>
       </tr>

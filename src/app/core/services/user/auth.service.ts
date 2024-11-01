@@ -62,18 +62,28 @@ export class AuthService {
   }
 
   // Refresh the access token
-refreshToken(): Observable<any> {
-  const refresh = localStorage.getItem('refresh_token');
-  return this.http.post(`${this.baseUrl}/token/refresh/`, { refresh }).pipe(
-    tap((response: any) => {
-      this.storeToken(response.access);  // Update access token
-    }),
-    catchError(() => {
-      this.logout();
-      return throwError(() => new Error('Failed to refresh token'));
-    })
-  );
-}
+  refreshToken(): Observable<any> {
+    const refresh = localStorage.getItem('refresh_token');
+    return this.http.post(`${this.baseUrl}/token/refresh/`, { refresh }).pipe(
+      tap((response: any) => {
+        this.storeToken(response.access);  
+        const userDetails = {
+          username: response.username,
+          first_name: response.first_name,
+          last_name: response.last_name,
+          id:response.user_id,
+          role:response.role,
+          photo:response.photo
+        };
+
+        localStorage.setItem('user_details', JSON.stringify(userDetails));
+      }),
+      catchError(() => {
+        this.logout();
+        return throwError(() => new Error('Failed to refresh token'));
+      })
+    );
+  }
 
 // Verify the token
 verifyToken(token: string): Observable<any> {
